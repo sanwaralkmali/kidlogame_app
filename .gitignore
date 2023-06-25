@@ -48,5 +48,6 @@ app.*.map.json
 /android/app/outputs
 
 # docs
-/docs
+*/docs
+*.md
 
