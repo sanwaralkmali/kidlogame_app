@@ -12,7 +12,7 @@
 
 **Week 2-3: Core Features and Functionalities Implementation**
 
-- [ ] Define the data models required in the application.
+- [x] Define the data models required in the application.
 - [ ] Implement the various screens in line with the wireframes and UI/UX designs.
 - [ ] Put in place a state management system.
 - [ ] Set up the network requests required to fetch and send data to/from the server.
