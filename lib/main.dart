@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/views/splash_screen.dart';
+
+import 'views/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'KidloGame',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const Text('Home screen'),
+      home: const SplashScreen(),
+      routes: <String, WidgetBuilder>{
+        '/HomeScreen': (BuildContext context) => const HomeScreen()
+      },
     );
   }
 }

@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.3"
+  animated_splash_screen:
+    dependency: "direct main"
+    description:
+      name: animated_splash_screen
+      sha256: f45634db6ec4e8cf034c53e03f3bd83898a16fe3c9286bf5510b6831dfcf2124
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.3.0"
   another_flushbar:
     dependency: transitive
     description:
@@ -158,6 +166,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_animator:
+    dependency: "direct main"
+    description:
+      name: flutter_animator
+      sha256: e020529278d891ece0c420bc2f8801c38160b2fc69c377a0c9a5bec2596fd7af
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.2"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -304,6 +320,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  page_transition:
+    dependency: transitive
+    description:
+      name: page_transition
+      sha256: a7694bc120b7064a7f57c336914bb8885acf4f70bb3772c30c2fcfe6a85e43ff
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.9"
   path:
     dependency: transitive
     description:
