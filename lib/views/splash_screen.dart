@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
     });
     Future.delayed(const Duration(milliseconds: 7500)).then((_) {
       Navigator.of(context).pushReplacementNamed(
-          '/HomeScreen'); // Replace '/home' with the route name of your home screen
+          '/LoginScreen'); // Replace '/home' with the route name of your home screen
     });
   }
 
