@@ -39,6 +39,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/graphics/loginScreen1.png
+    - assets/images/graphics/forgetPasswordScreen1.png
     - assets/images/icons/google.png
     - assets/images/icons/
 

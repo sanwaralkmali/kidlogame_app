@@ -1,4 +1,8 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
+
+import 'forget-password.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -113,7 +117,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   alignment: Alignment.topRight,
                   child: TextButton(
                     onPressed: () {
-                      // forgot password screen
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const ForgotPasswordScreen(),
+                        ),
+                      );
                     },
                     child: const Text('Forgot Password?'),
                   ),
