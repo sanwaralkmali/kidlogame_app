@@ -12,6 +12,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  String errorMessage = '';
+  String username = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,6 +99,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
+                  onChanged: (value) {
+                    setState(() {
+                      username = value;
+                    });
+                  },
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
@@ -111,8 +119,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   obscureText: true,
+                  onChanged: (value) {
+                    setState(() {
+                      password = value;
+                    });
+                  },
                 ),
                 const SizedBox(height: 6),
+                if (errorMessage.isNotEmpty)
+                  Text(
+                    errorMessage,
+                    style: const TextStyle(
+                      color: Colors.red,
+                      fontSize: 14,
+                    ),
+                  ),
                 Align(
                   alignment: Alignment.topRight,
                   child: TextButton(
@@ -138,7 +159,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: TextButton.styleFrom(
                       foregroundColor: const Color.fromARGB(255, 0, 0, 0),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      if (username.isEmpty || password.isEmpty) {
+                        setState(() {
+                          errorMessage = 'Please fill all fields';
+                        });
+                      } else {
+                        setState(() {
+                          errorMessage = '';
+                        });
+                      }
+                    },
                     child: const Text(
                       'LOGIN',
                       textAlign: TextAlign.center,
@@ -203,7 +234,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               'GOOGLE',
                               style: TextStyle(
                                 fontSize: 12,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 0.5,
+                                color: Colors.black,
                               ),
                             ),
                           ],
@@ -230,7 +263,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               'APPLE ID',
                               style: TextStyle(
                                 fontSize: 12,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: 0.5,
+                                color: Colors.black,
                               ),
                             ),
                           ],
@@ -248,7 +283,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     const Text("Don't have an account? "),
                     GestureDetector(
                       onTap: () {
-                        // navigate to sign up screen
+                        Navigator.of(context)
+                            .pushReplacementNamed('/SignUpScreen');
                       },
                       child: const Text(
                         'Sign up',

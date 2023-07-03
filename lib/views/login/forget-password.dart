@@ -190,7 +190,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   const Text("Don't have an account? "),
                   GestureDetector(
                     onTap: () {
-                      // navigate to sign up screen
+                      Navigator.of(context)
+                          .pushReplacementNamed('/SignUpScreen');
                     },
                     child: const Text(
                       'Sign up',
