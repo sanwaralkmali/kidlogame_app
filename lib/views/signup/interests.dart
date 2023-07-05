@@ -1,7 +1,11 @@
+// ignore_for_file: library_private_types_in_public_api, must_be_immutable
+
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/models/user.dart';
 
 class Interests extends StatefulWidget {
-  const Interests({Key? key}) : super(key: key);
+  KUser user;
+  Interests({Key? key, required this.user}) : super(key: key);
 
   @override
   _InterestsState createState() => _InterestsState();
@@ -9,7 +13,7 @@ class Interests extends StatefulWidget {
 
 class _InterestsState extends State<Interests> {
   List<String> interests = [];
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -24,14 +28,12 @@ class _InterestsState extends State<Interests> {
 
   _printLatestValue() {
     String text = _controller.text;
-    if (text.endsWith(' ')) {
-      print(text);
-    }
+    if (text.endsWith(' ')) {}
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 300,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,8 +70,11 @@ class _InterestsState extends State<Interests> {
                             !_controller.text.startsWith(' ')) {
                           interests.add(_controller.text);
                           _controller.clear();
-                        } else
+                        } else {
                           _controller.clear();
+                        }
+
+                        widget.user.interests = interests;
                       });
                     },
                     icon: const Icon(Icons.add),

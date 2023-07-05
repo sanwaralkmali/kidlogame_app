@@ -1,6 +1,8 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'forget-password.dart';
 
@@ -13,8 +15,48 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   String errorMessage = '';
-  String username = '';
-  String password = '';
+
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> setUserLoggedIn() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setBool('isUserLoggedIn', true);
+    });
+  }
+
+  Future<void> _loginUser(String email, String password) async {
+    var snapshot = await FirebaseFirestore.instance
+        .collection('Users')
+        .where('email', isEqualTo: email)
+        .where('password', isEqualTo: password)
+        .get();
+
+    if (snapshot.docs.isEmpty) {
+      setState(() {
+        errorMessage = 'Invalid email or password';
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          shape: Border(top: BorderSide(color: Colors.green, width: 2)),
+          closeIconColor: Color.fromARGB(255, 183, 84, 95),
+          showCloseIcon: true,
+          content: Text(
+            'Login successful',
+            style: TextStyle(
+              color: Color.fromARGB(255, 128, 211, 130),
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+      setUserLoggedIn();
+      Navigator.of(context).pushNamed('/HomeScreen');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,6 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 32,
                 ),
                 TextFormField(
+                  controller: _usernameController,
                   decoration: const InputDecoration(
                     constraints: BoxConstraints(
                       maxHeight: 50,
@@ -99,14 +142,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                   ),
-                  onChanged: (value) {
-                    setState(() {
-                      username = value;
-                    });
-                  },
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
+                  controller: _passwordController,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.lock),
                     constraints: BoxConstraints(
@@ -119,11 +158,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   obscureText: true,
-                  onChanged: (value) {
-                    setState(() {
-                      password = value;
-                    });
-                  },
                 ),
                 const SizedBox(height: 6),
                 if (errorMessage.isNotEmpty)
@@ -160,13 +194,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       foregroundColor: const Color.fromARGB(255, 0, 0, 0),
                     ),
                     onPressed: () {
-                      if (username.isEmpty || password.isEmpty) {
+                      if (_usernameController.text.isEmpty ||
+                          _passwordController.text.isEmpty) {
                         setState(() {
                           errorMessage = 'Please fill all fields';
                         });
                       } else {
                         setState(() {
                           errorMessage = '';
+                          _loginUser(_usernameController.text,
+                              _passwordController.text);
                         });
                       }
                     },

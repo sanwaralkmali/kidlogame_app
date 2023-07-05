@@ -1,21 +1,44 @@
 // ignore_for_file: library_private_types_in_public_api, file_names
 
 import 'package:flutter/material.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dateSelector.dart';
 import 'favoriteSubject.dart';
 import 'ganderSelector.dart';
 import 'gradeSelcetor.dart';
 import 'interests.dart';
+import '../../models/user.dart';
 
 class ContinueScreen extends StatefulWidget {
-  const ContinueScreen({Key? key}) : super(key: key);
+  final KUser user;
+  const ContinueScreen({Key? key, required this.user}) : super(key: key);
 
   @override
   _ContinueScreenState createState() => _ContinueScreenState();
 }
 
 class _ContinueScreenState extends State<ContinueScreen> {
+  Future<void> _addUserToFirestore(KUser user) async {
+    await FirebaseFirestore.instance
+        .collection('Users')
+        .add(user.toMap())
+        .then((value) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Sign up successful & Logged in'),
+        ),
+      );
+      Navigator.of(context).pushNamed('/HomeScreen');
+    }).catchError((err) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Sign up failed'),
+        ),
+      );
+      Navigator.of(context).pop();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,18 +48,20 @@ class _ContinueScreenState extends State<ContinueScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('assets/images/graphics/SignUpScreen1.png'),
-              const GanderSelector(),
+              GanderSelector(user: widget.user),
               const SizedBox(height: 24),
-              const DateSelector(),
+              DateSelector(user: widget.user),
               const SizedBox(height: 8),
-              const GradeSelector(),
+              GradeSelector(user: widget.user),
               const SizedBox(height: 8.0),
-              const FavoriteSubject(),
+              FavoriteSubject(user: widget.user),
               const SizedBox(height: 8),
-              const Interests(),
+              Interests(user: widget.user),
               const SizedBox(height: 24),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  _addUserToFirestore(widget.user);
+                },
                 child: Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(

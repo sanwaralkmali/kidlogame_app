@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "494092950292",
+    "project_id": "kidlogame-2bb99",
+    "storage_bucket": "kidlogame-2bb99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494092950292:android:3b3654c3e7f0b62dd44001",
+        "android_client_info": {
+          "package_name": "com.example.kidlogame_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494092950292-rgkpejns927861lifdhiu977gt7075gq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz-BKA5BHzRe5yl1ajm1UEflUKzxt5LUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494092950292-rgkpejns927861lifdhiu977gt7075gq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "494092950292-6nl3tgnqeibnidt1iah14df0lijn58gg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.kidlogameApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

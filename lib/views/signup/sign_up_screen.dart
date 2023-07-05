@@ -1,6 +1,8 @@
 // ignore_for_file: deprecated_member_use, prefer_final_fields
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/models/user.dart';
+import 'package:uuid/uuid.dart';
 
 import 'continue-screen.dart';
 
@@ -15,8 +17,12 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   bool passwordVisible = false;
   bool confirmPasswordVisible = false;
-  TextEditingController _currentPasswordController = TextEditingController();
+  final TextEditingController _currentEmailController = TextEditingController();
+  final TextEditingController _currentNameController = TextEditingController();
+  final TextEditingController _currentPasswordController =
+      TextEditingController();
   bool passwordMessage = false;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -171,168 +177,206 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ],
               ),
               const SizedBox(height: 20),
-              SizedBox(
-                width: 300,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Name *',
-                    hintText: 'Enter your name',
+              Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 300,
+                      child: TextFormField(
+                        controller: _currentNameController,
+                        decoration: InputDecoration(
+                          labelText: 'Name *',
+                          hintText: 'Enter your name',
 
-                    labelStyle: const TextStyle(
-                      color: Color.fromARGB(255, 26, 24, 24),
-                      fontSize: 14,
-                    ), // Change this to your preferred color
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: const BorderSide(
-                        color: Color.fromARGB(216, 76, 29, 249),
-                        // Change this to your preferred color
-                      ),
-                    ),
+                          labelStyle: const TextStyle(
+                            color: Color.fromARGB(255, 26, 24, 24),
+                            fontSize: 14,
+                          ), // Change this to your preferred color
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: const BorderSide(
+                              color: Color.fromARGB(216, 76, 29, 249),
+                              // Change this to your preferred color
+                            ),
+                          ),
 
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: const BorderSide(
-                        color:
-                            Colors.green, // Change this to your preferred color
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: const BorderSide(
+                              color: Colors
+                                  .green, // Change this to your preferred color
+                            ),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a name';
+                          } else if (value.length < 3) {
+                            return 'Name must be at least 3 characters';
+                          }
+                          return null;
+                        },
                       ),
                     ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              const SizedBox(height: 12),
-              SizedBox(
-                width: 300,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Email *',
-                    hintText: 'your-email@email.com',
+                    const SizedBox(height: 12),
+                    SizedBox(
+                      width: 300,
+                      child: TextFormField(
+                        controller: _currentEmailController,
+                        decoration: InputDecoration(
+                          labelText: 'Email *',
+                          hintText: 'your-email@email.com',
 
-                    labelStyle: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                    ), // Change this to your preferred color
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: const BorderSide(
-                        color: Color.fromARGB(216, 76, 29, 249),
-                        // Change this to your preferred color
-                      ),
-                    ),
+                          labelStyle: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                          ),
+                          // Change this to your preferred color
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: const BorderSide(
+                              color: Color.fromARGB(216, 76, 29, 249),
+                              // Change this to your preferred color
+                            ),
+                          ),
 
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: const BorderSide(
-                        color:
-                            Colors.green, // Change this to your preferred color
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: const BorderSide(
+                              color: Colors
+                                  .green, // Change this to your preferred color
+                            ),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter an email';
+                          } else if (!RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(value)) {
+                            return 'Please enter a valid email address';
+                          }
+                          return null;
+                        },
                       ),
                     ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your email';
-                    }
-                    return null;
-                  },
-                ),
-              ),
-              const SizedBox(height: 12),
-              SizedBox(
-                width: 300,
-                child: TextField(
-                  enableInteractiveSelection: true,
-                  autocorrect: false,
-                  enableSuggestions: false,
-                  toolbarOptions: const ToolbarOptions(
-                    copy: false,
-                    paste: false,
-                    cut: false,
-                    selectAll: false,
-                  ),
-                  controller: _currentPasswordController,
-                  obscureText: passwordVisible,
-                  decoration: InputDecoration(
-                    errorText: passwordMessage
-                        ? 'Password must be at least 8 characters long'
-                        : null,
-                    filled: true,
-                    fillColor: Colors.white,
-                    contentPadding: const EdgeInsets.fromLTRB(20, 24, 12, 16),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: const BorderSide(
-                        color: Color.fromARGB(216, 76, 29, 249),
-                        // Change this to your preferred color
+                    const SizedBox(height: 12),
+                    SizedBox(
+                      width: 300,
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a password';
+                          } else if (!RegExp(
+                                  r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$')
+                              .hasMatch(value)) {
+                            return 'Password must be at least 8 characters, include an uppercase letter, a lowercase letter, and a number';
+                          }
+                          return null;
+                        },
+                        enableInteractiveSelection: true,
+                        autocorrect: false,
+                        enableSuggestions: false,
+                        toolbarOptions: const ToolbarOptions(
+                          copy: false,
+                          paste: false,
+                          cut: false,
+                          selectAll: false,
+                        ),
+                        controller: _currentPasswordController,
+                        obscureText: !passwordVisible,
+                        decoration: InputDecoration(
+                          errorText: passwordMessage
+                              ? 'Password must be at least 8 characters long'
+                              : null,
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding:
+                              const EdgeInsets.fromLTRB(20, 24, 12, 16),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: const BorderSide(
+                              color: Color.fromARGB(216, 76, 29, 249),
+                              // Change this to your preferred color
+                            ),
+                          ),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(25.0),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: const BorderSide(
+                              color: Colors
+                                  .green, // Change this to your preferred color
+                            ),
+                          ),
+                          // filled: true,
+                          labelText: 'Password',
+                          hintText: 'Enter your password',
+                          labelStyle: const TextStyle(
+                            color: Color.fromARGB(255, 26, 24, 24),
+                            fontSize: 14,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                passwordVisible = !passwordVisible;
+                              });
+                            },
+                            child: Container(
+                                margin: const EdgeInsets.all(13),
+                                child: Icon(
+                                    passwordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    size: 25)),
+                          ),
+                        ),
                       ),
                     ),
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(25.0),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                      borderSide: const BorderSide(
-                        color:
-                            Colors.green, // Change this to your preferred color
-                      ),
-                    ),
-                    // filled: true,
-                    labelText: 'Password',
-                    hintText: 'Enter your password',
-                    labelStyle: const TextStyle(
-                      color: Color.fromARGB(255, 26, 24, 24),
-                      fontSize: 14,
-                    ),
-                    suffixIcon: GestureDetector(
+                    const SizedBox(height: 24),
+                    GestureDetector(
                       onTap: () {
-                        setState(() {
-                          passwordVisible = !passwordVisible;
-                        });
+                        if (_formKey.currentState!.validate()) {
+                          KUser user = KUser(
+                            id: const Uuid().v1(),
+                            username: _currentNameController.text,
+                            email: _currentEmailController.text,
+                            password: _currentPasswordController.text,
+                            gender: 'boy',
+                            totalPoints: 0,
+                            level: 1,
+                          );
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => ContinueScreen(user: user),
+                            ),
+                          );
+                        }
                       },
                       child: Container(
-                          margin: const EdgeInsets.all(13),
-                          child: Icon(
-                              passwordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              size: 25)),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: const Color.fromRGBO(126, 197, 249, 1),
+                        ),
+                        width: 300,
+                        height: 48,
+                        child: const Text(
+                          'Sign up',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const ContinueScreen(),
-                    ),
-                  );
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: const Color.fromRGBO(126, 197, 249, 1),
-                  ),
-                  width: 300,
-                  height: 48,
-                  child: const Text(
-                    'Sign up',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
+                  ],
                 ),
               ),
               const SizedBox(height: 32),

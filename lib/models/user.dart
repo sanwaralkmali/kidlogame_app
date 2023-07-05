@@ -1,26 +1,30 @@
-class User {
+class KUser {
   final String id;
   final String username;
   final String password;
   final String email;
-  final String grade;
-  final List<String> subjectsOfInterest;
-  final String gender;
-  final String level;
-  final int totalPoints;
-  final Map<String, int> subjectPoints; // SubjectID : Points
+  DateTime? dateOfBirth;
+  String? grade;
+  String? subjectsOfInterest;
+  String gender;
+  int level;
+  int totalPoints;
+  Map<String, int>? subjectPoints; // SubjectID : Points
+  List<String>? interests; // List of LessonIDs
 
-  User({
+  KUser({
     required this.id,
     required this.username,
     required this.password,
     required this.email,
-    required this.grade,
-    required this.subjectsOfInterest,
+    this.dateOfBirth,
+    this.grade,
+    this.subjectsOfInterest,
     required this.gender,
     required this.level,
     required this.totalPoints,
-    required this.subjectPoints,
+    this.subjectPoints,
+    this.interests,
   });
 
   // Method to convert User object into a map
@@ -36,18 +40,19 @@ class User {
       'level': level,
       'totalPoints': totalPoints,
       'subjectPoints': subjectPoints,
+      'interests': interests,
     };
   }
 
   // Method to convert map into User object
-  static User fromMap(Map<String, dynamic> map) {
-    return User(
+  static KUser fromMap(Map<String, dynamic> map) {
+    return KUser(
       id: map['id'],
       username: map['username'],
       password: map['password'],
       email: map['email'],
       grade: map['grade'],
-      subjectsOfInterest: List<String>.from(map['subjectsOfInterest']),
+      subjectsOfInterest: map['subjectsOfInterest'],
       gender: map['gender'],
       level: map['level'],
       totalPoints: map['totalPoints'],

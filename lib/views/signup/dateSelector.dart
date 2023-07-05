@@ -1,7 +1,11 @@
+// ignore_for_file: must_be_immutable, library_private_types_in_public_api, file_names
+
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/models/user.dart';
 
 class DateSelector extends StatefulWidget {
-  const DateSelector({Key? key}) : super(key: key);
+  KUser user;
+  DateSelector({Key? key, required this.user}) : super(key: key);
 
   @override
   _DateSelectorState createState() => _DateSelectorState();
@@ -22,6 +26,7 @@ class _DateSelectorState extends State<DateSelector> {
     if (picked != null && picked != _selectedDate) {
       setState(() {
         _selectedDate = picked;
+        widget.user.dateOfBirth = _selectedDate;
       });
     }
   }

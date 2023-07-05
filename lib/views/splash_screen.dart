@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../constants/textStyles.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -14,6 +15,15 @@ class _SplashScreenState extends State<SplashScreen> {
   double _opacityLogo = 0;
   double _opacityText = 0;
 
+  bool isUserLoggedIn = false;
+
+  Future<void> checkIfUserLoggedIn() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isUserLoggedIn = prefs.getBool('isUserLoggedIn') ?? false;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -21,6 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
       setState(() {
         _opacityLogo = 1;
       });
+      checkIfUserLoggedIn();
     });
     Future.delayed(const Duration(seconds: 1)).then((_) {
       setState(() {
@@ -34,8 +45,12 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
     Future.delayed(const Duration(milliseconds: 7500)).then((_) {
-      Navigator.of(context).pushReplacementNamed(
-          '/LoginScreen'); // Replace '/home' with the route name of your home screen
+      if (isUserLoggedIn) {
+        Navigator.of(context).pushReplacementNamed('/HomeScreen');
+      } else {
+        Navigator.of(context).pushReplacementNamed(
+            '/LoginScreen'); // Replace '/home' with the route name of your home screen
+      }
     });
   }
 

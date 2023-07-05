@@ -1,7 +1,11 @@
+// ignore_for_file: must_be_immutable, library_private_types_in_public_api, file_names
+
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/models/user.dart';
 
 class FavoriteSubject extends StatefulWidget {
-  const FavoriteSubject({Key? key}) : super(key: key);
+  KUser user;
+  FavoriteSubject({Key? key, required this.user}) : super(key: key);
 
   @override
   _FavoriteSubjectState createState() => _FavoriteSubjectState();
@@ -47,6 +51,7 @@ class _FavoriteSubjectState extends State<FavoriteSubject> {
               onChanged: (String? newValue) {
                 setState(() {
                   _selectedSubject = newValue;
+                  widget.user.subjectsOfInterest = _selectedSubject;
                 });
               },
               items: _subjects.map<DropdownMenuItem<String>>((String value) {

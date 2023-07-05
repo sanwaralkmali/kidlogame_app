@@ -1,7 +1,11 @@
+// ignore_for_file: must_be_immutable, file_names
+
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/models/user.dart';
 
 class GradeSelector extends StatefulWidget {
-  const GradeSelector({super.key});
+  KUser user;
+  GradeSelector({super.key, required this.user});
 
   @override
   State<GradeSelector> createState() => _GradeSelectorState();
@@ -47,6 +51,7 @@ class _GradeSelectorState extends State<GradeSelector> {
               onChanged: (String? newValue) {
                 setState(() {
                   _selectedGrade = newValue;
+                  widget.user.grade = _selectedGrade;
                 });
               },
               items: _grades.map<DropdownMenuItem<String>>((String value) {
