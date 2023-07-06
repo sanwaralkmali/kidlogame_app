@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class KUser {
   String firstName;
   String lastName;
@@ -56,14 +58,18 @@ class KUser {
       username: map['username'],
       password: map['password'],
       email: map['email'],
-      dateOfBirth: map['dateOfBirth'],
+      dateOfBirth: map['dateOfBirth'] != null
+          ? (map['dateOfBirth'] as Timestamp).toDate()
+          : null,
       grade: map['grade'],
       gender: map['gender'],
       favSubject: map['favSubject'],
       interests: List<String>.from(map['interests']),
       level: map['level'],
       totalPoints: map['totalPoints'],
-      subjectPoints: Map<String, int>.from(map['subjectPoints']),
+      subjectPoints: map['subjectPoints'] != null
+          ? Map<String, int>.from(map['subjectPoints'])
+          : null,
     );
   }
 

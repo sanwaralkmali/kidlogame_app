@@ -19,8 +19,8 @@
 
 **Week 3-4: Data Input and Output Interface Construction**
 
-- [ ] Develop input widgets such as forms and dialog boxes.
-- [ ] Handle user inputs effectively and put in place form validation systems.
+- [x] Develop input widgets such as forms and dialog boxes.
+- [x] Handle user inputs effectively and put in place form validation systems.
 - [ ] Implement output interfaces like data tables and lists.
 - [ ] Ensure data is properly formatted and displayed in accordance with the UI design.
 

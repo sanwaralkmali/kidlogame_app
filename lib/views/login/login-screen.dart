@@ -1,9 +1,12 @@
 // ignore_for_file: file_names, use_build_context_synchronously
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../models/user.dart';
 import '../home/home_screen.dart';
 import 'forget-password.dart';
 
@@ -16,14 +19,15 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   String errorMessage = '';
-
+  late KUser user;
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  Future<void> setUserLoggedIn() async {
+  Future<void> setUserLoggedIn(username) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       prefs.setBool('isUserLoggedIn', true);
+      prefs.setString('username', username);
     });
   }
 
@@ -39,6 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
         errorMessage = 'Invalid email or password';
       });
     } else {
+      Map<String, dynamic>? data = snapshot.docs.first.data();
+
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           shape: Border(top: BorderSide(color: Colors.green, width: 2)),
@@ -53,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       );
-      setUserLoggedIn();
+      setUserLoggedIn(data['username']);
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const HomeScreen(),

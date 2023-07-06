@@ -21,7 +21,6 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       isUserLoggedIn = prefs.getBool('isUserLoggedIn') ?? false;
-      prefs.setBool('isUserLoggedIn', false);
     });
   }
 

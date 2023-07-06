@@ -1,5 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, file_names
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../home/home_screen.dart';
@@ -9,6 +11,7 @@ import 'ganderSelector.dart';
 import 'gradeSelcetor.dart';
 import 'interests.dart';
 import '../../models/user.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ContinueScreen extends StatefulWidget {
   final KUser user;
@@ -19,6 +22,14 @@ class ContinueScreen extends StatefulWidget {
 }
 
 class _ContinueScreenState extends State<ContinueScreen> {
+  Future<void> setUserLoggedIn(KUser user) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setBool('isUserLoggedIn', true);
+      prefs.setString('username', user.username);
+    });
+  }
+
   Future<void> _addUserToFirestore(KUser user) async {
     await FirebaseFirestore.instance
         .collection('Users')
@@ -29,6 +40,7 @@ class _ContinueScreenState extends State<ContinueScreen> {
           content: Text('Sign up successful & Logged in'),
         ),
       );
+      setUserLoggedIn(user);
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const HomeScreen()),
       );

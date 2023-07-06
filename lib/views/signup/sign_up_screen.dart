@@ -58,11 +58,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void initState() {
     super.initState();
     _focusNode = FocusNode();
-    _focusNode.addListener(() {
-      if (!_focusNode.hasFocus) {
-        updateUsername();
-      }
-    });
+    _focusNode.addListener(() {});
 
     _focusNode2 = FocusNode();
     _focusNode2.addListener(() {
@@ -304,13 +300,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'Your username is: $username',
-                                style: const TextStyle(
-                                  color: Color.fromARGB(255, 8, 95, 60),
-                                  fontSize: 12,
+                              Flexible(
+                                child: Text(
+                                  'Your username is: $username',
+                                  softWrap: true,
+                                  style: const TextStyle(
+                                    color: Color.fromARGB(255, 8, 95, 60),
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
+                              const SizedBox(width: 8),
                               GestureDetector(
                                 onTap: () {
                                   generateUniqueUsername(
