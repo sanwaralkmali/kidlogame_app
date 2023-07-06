@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '494092950292',
     projectId: 'kidlogame-2bb99',
     storageBucket: 'kidlogame-2bb99.appspot.com',
-    iosClientId: '494092950292-6nl3tgnqeibnidt1iah14df0lijn58gg.apps.googleusercontent.com',
+    iosClientId:
+        '494092950292-6nl3tgnqeibnidt1iah14df0lijn58gg.apps.googleusercontent.com',
     iosBundleId: 'com.example.kidlogameApp',
   );
 }

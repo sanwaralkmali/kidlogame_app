@@ -51,7 +51,7 @@ class _FavoriteSubjectState extends State<FavoriteSubject> {
               onChanged: (String? newValue) {
                 setState(() {
                   _selectedSubject = newValue;
-                  widget.user.subjectsOfInterest = _selectedSubject;
+                  widget.user.favSubject = _selectedSubject;
                 });
               },
               items: _subjects.map<DropdownMenuItem<String>>((String value) {

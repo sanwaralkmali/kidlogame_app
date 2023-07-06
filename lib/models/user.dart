@@ -1,59 +1,66 @@
 class KUser {
-  final String id;
+  String firstName;
+  String lastName;
   final String username;
   final String password;
   final String email;
   DateTime? dateOfBirth;
   String? grade;
-  String? subjectsOfInterest;
   String gender;
+  String? favSubject;
+  List<String>? interests;
   int level;
   int totalPoints;
-  Map<String, int>? subjectPoints; // SubjectID : Points
-  List<String>? interests; // List of LessonIDs
+  Map<String, int>? subjectPoints;
 
   KUser({
-    required this.id,
+    required this.firstName,
+    required this.lastName,
     required this.username,
     required this.password,
     required this.email,
     this.dateOfBirth,
     this.grade,
-    this.subjectsOfInterest,
     required this.gender,
+    this.favSubject,
+    this.interests,
     required this.level,
     required this.totalPoints,
     this.subjectPoints,
-    this.interests,
   });
 
   // Method to convert User object into a map
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
+      'firstName': firstName,
+      'lastName': lastName,
       'username': username,
       'password': password,
       'email': email,
+      'dateOfBirth': dateOfBirth,
       'grade': grade,
-      'subjectsOfInterest': subjectsOfInterest,
       'gender': gender,
+      'favSubject': favSubject,
+      'interests': interests,
       'level': level,
       'totalPoints': totalPoints,
       'subjectPoints': subjectPoints,
-      'interests': interests,
     };
   }
 
   // Method to convert map into User object
   static KUser fromMap(Map<String, dynamic> map) {
     return KUser(
-      id: map['id'],
+      firstName: map['firstName'],
+      lastName: map['lastName'],
       username: map['username'],
       password: map['password'],
       email: map['email'],
+      dateOfBirth: map['dateOfBirth'],
       grade: map['grade'],
-      subjectsOfInterest: map['subjectsOfInterest'],
       gender: map['gender'],
+      favSubject: map['favSubject'],
+      interests: List<String>.from(map['interests']),
       level: map['level'],
       totalPoints: map['totalPoints'],
       subjectPoints: Map<String, int>.from(map['subjectPoints']),

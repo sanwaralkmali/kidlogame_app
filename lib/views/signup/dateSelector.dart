@@ -13,6 +13,7 @@ class DateSelector extends StatefulWidget {
 
 class _DateSelectorState extends State<DateSelector> {
   DateTime _selectedDate = DateTime.now(); // default value is today's date
+  String dateText = 'Date of Birth';
 
   _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -27,6 +28,7 @@ class _DateSelectorState extends State<DateSelector> {
       setState(() {
         _selectedDate = picked;
         widget.user.dateOfBirth = _selectedDate;
+        dateText = _selectedDate.toString().substring(0, 10);
       });
     }
   }
@@ -50,9 +52,9 @@ class _DateSelectorState extends State<DateSelector> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    'Select your birthday',
-                    style: TextStyle(
+                  Text(
+                    dateText,
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Colors.black,
                     ),

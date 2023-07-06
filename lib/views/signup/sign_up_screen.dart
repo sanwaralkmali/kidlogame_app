@@ -1,9 +1,9 @@
 // ignore_for_file: deprecated_member_use, prefer_final_fields
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/models/user.dart';
-import 'package:uuid/uuid.dart';
-
+import 'dart:math';
 import 'continue-screen.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -17,15 +17,74 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   bool passwordVisible = false;
   bool confirmPasswordVisible = false;
+  final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _currentEmailController = TextEditingController();
   final TextEditingController _currentNameController = TextEditingController();
   final TextEditingController _currentPasswordController =
       TextEditingController();
+  late final FocusNode _focusNode;
+  late final FocusNode _focusNode2;
+
+  String username = '';
   bool passwordMessage = false;
   final _formKey = GlobalKey<FormState>();
+  Future<void> generateUniqueUsername(String firstName) async {
+    while (true) {
+      var rng = Random();
+      int randomNumber = 0 + rng.nextInt(1000);
+      setState(() {
+        username =
+            '${firstName.replaceAll(' ', '')}_${randomNumber.toString()}';
+      });
+      var result = await FirebaseFirestore.instance
+          .collection('Users')
+          .where('username', isEqualTo: username)
+          .get();
+
+      if (result.docs.isEmpty) return;
+    }
+  }
+
+  bool hasAccount = false;
+  Future<bool> _hasAccount(String email) async {
+    var result = await FirebaseFirestore.instance
+        .collection('Users')
+        .where('email', isEqualTo: email)
+        .get();
+    return result.docs.isNotEmpty;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+    _focusNode.addListener(() {
+      if (!_focusNode.hasFocus) {
+        updateUsername();
+      }
+    });
+
+    _focusNode2 = FocusNode();
+    _focusNode2.addListener(() {
+      if (!_focusNode2.hasFocus) {
+        _hasAccount(_currentEmailController.text).then((value) {
+          setState(() {
+            hasAccount = value;
+          });
+        });
+      }
+    });
+  }
+
+  updateUsername() {
+    setState(() {
+      generateUniqueUsername(_currentNameController.text);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    int nameLength = _currentNameController.text.length;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -185,6 +244,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       width: 300,
                       child: TextFormField(
                         controller: _currentNameController,
+                        focusNode: _focusNode,
                         decoration: InputDecoration(
                           labelText: 'Name *',
                           hintText: 'Enter your name',
@@ -203,12 +263,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(25.0),
-                            borderSide: const BorderSide(
-                              color: Colors
-                                  .green, // Change this to your preferred color
+                            borderSide: BorderSide(
+                              color: (nameLength >= 3)
+                                  ? Colors.green
+                                  : Colors
+                                      .red, // Change this to your preferred color
                             ),
                           ),
                         ),
+                        onChanged: (value) => setState(() {
+                          final text = _currentNameController.text
+                              .replaceAll(RegExp(' +'), ' ');
+                          _currentNameController.value =
+                              _currentNameController.value.copyWith(
+                            text: text.trimLeft(),
+                            selection: TextSelection.collapsed(
+                                offset: text.trimLeft().length),
+                          );
+                          value = value.replaceAll(' ', '');
+                          nameLength = value.length;
+                          if (nameLength >= 3) {
+                            generateUniqueUsername(text);
+                          }
+                        }),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter a name';
@@ -219,11 +296,93 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                     ),
+                    const SizedBox(height: 4),
+                    if (_currentNameController.text.isNotEmpty &&
+                        _currentNameController.text.length >= 3)
+                      SizedBox(
+                          width: 300,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Your username is: $username',
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 8, 95, 60),
+                                  fontSize: 12,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  generateUniqueUsername(
+                                      _currentNameController.text);
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8.0,
+                                    vertical: 8.0,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(6),
+                                    color:
+                                        const Color.fromARGB(101, 2, 73, 128),
+                                  ),
+                                  child: const Text(
+                                    'Regenerate',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color.fromRGBO(0, 0, 0, 1),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                    const SizedBox(height: 12),
+                    SizedBox(
+                      width: 300,
+                      child: TextFormField(
+                        controller: _lastNameController,
+                        decoration: InputDecoration(
+                          labelText: 'Last name *',
+                          hintText: 'Enter your last name',
+
+                          labelStyle: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                          ),
+                          // Change this to your preferred color
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: const BorderSide(
+                              color: Color.fromARGB(216, 76, 29, 249),
+                              // Change this to your preferred color
+                            ),
+                          ),
+
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                            borderSide: const BorderSide(
+                              color: Colors
+                                  .green, // Change this to your preferred color
+                            ),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your last name';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                    ),
                     const SizedBox(height: 12),
                     SizedBox(
                       width: 300,
                       child: TextFormField(
                         controller: _currentEmailController,
+                        focusNode: _focusNode2,
                         decoration: InputDecoration(
                           labelText: 'Email *',
                           hintText: 'your-email@email.com',
@@ -261,6 +420,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                     ),
+                    const SizedBox(height: 12),
+                    if (hasAccount)
+                      const SizedBox(
+                        width: 300,
+                        child: Text(
+                          'This email is already in use. Please login',
+                          softWrap: true,
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 128, 21, 21),
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
                     const SizedBox(height: 12),
                     SizedBox(
                       width: 300,
@@ -342,15 +515,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       onTap: () {
                         if (_formKey.currentState!.validate()) {
                           KUser user = KUser(
-                            id: const Uuid().v1(),
-                            username: _currentNameController.text,
+                            firstName: _currentNameController.text,
+                            lastName: _lastNameController.text,
+                            username: username,
                             email: _currentEmailController.text,
                             password: _currentPasswordController.text,
                             gender: 'boy',
                             totalPoints: 0,
                             level: 1,
                           );
-                          Navigator.of(context).push(
+                          Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
                               builder: (context) => ContinueScreen(user: user),
                             ),

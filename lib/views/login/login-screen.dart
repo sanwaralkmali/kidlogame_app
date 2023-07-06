@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../home/home_screen.dart';
 import 'forget-password.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -53,7 +54,11 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
       setUserLoggedIn();
-      Navigator.of(context).pushNamed('/HomeScreen');
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      );
     }
   }
 

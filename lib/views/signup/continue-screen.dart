@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../home/home_screen.dart';
 import 'dateSelector.dart';
 import 'favoriteSubject.dart';
 import 'ganderSelector.dart';
@@ -28,7 +29,9 @@ class _ContinueScreenState extends State<ContinueScreen> {
           content: Text('Sign up successful & Logged in'),
         ),
       );
-      Navigator.of(context).pushNamed('/HomeScreen');
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
     }).catchError((err) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

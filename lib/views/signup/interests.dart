@@ -90,6 +90,7 @@ class _InterestsState extends State<Interests> {
                         _controller.clear();
                       }
                     }
+                    widget.user.interests = interests;
                   });
                 },
               ),
