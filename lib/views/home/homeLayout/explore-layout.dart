@@ -34,7 +34,7 @@ class ExploreColumn extends StatelessWidget {
       'Other'
     ];
     return Padding(
-      padding: const EdgeInsets.only(left: 20, top: 4, bottom: 4, right: 20),
+      padding: const EdgeInsets.only(left: 12, top: 4, bottom: 4, right: 4),
       child: Column(
         children: <Widget>[
           const ExploreHeader(),

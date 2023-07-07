@@ -8,7 +8,7 @@ AppBar MyAppBar({required KUser user, required BuildContext context}) {
   return AppBar(
     toolbarHeight: 100,
     backgroundColor: Colors.white,
-    title: Image.asset('assets/images/KidloGameLOGO.png', height: 65),
+    title: Image.asset('assets/images/KidloGameLOGO.png', height: 72),
     actions: <Widget>[
       GestureDetector(
         onTap: () {
@@ -20,7 +20,8 @@ AppBar MyAppBar({required KUser user, required BuildContext context}) {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset('assets/images/icons/man.png', height: 55),
+              Image.asset('assets/images/icons/man.png', height: 45),
+              const SizedBox(height: 2),
               Text(
                 '${user.firstName} ${user.lastName}',
                 style: const TextStyle(
@@ -28,6 +29,7 @@ AppBar MyAppBar({required KUser user, required BuildContext context}) {
                   fontSize: 12,
                 ),
               ),
+              const SizedBox(height: 1),
               Text(
                 'Level ${user.level}',
                 style: const TextStyle(
