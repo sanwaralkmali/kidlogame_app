@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/user.dart';
-import '../appBar.dart';
-import 'bottom_navBar.dart';
-import 'homeComponents/explore-layout.dart';
+import '../app&bottomBars/appBar.dart';
+import '../app&bottomBars/bottom_navBar.dart';
+import 'homeLayout/explore-layout.dart';
+import 'buttons/new-game-btn.dart';
+import 'homeLayout/ready-games-layout.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
         .collection('Users')
         .where('username', isEqualTo: username)
         .get();
-    await Future.delayed(const Duration(seconds: 2));
 
     var document = snapshot.docs.first;
     return KUser.fromMap(document.data());
@@ -55,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
         } else {
           KUser user = snapshot.data!;
           return Scaffold(
-            backgroundColor: const Color.fromRGBO(106, 155, 213, 70),
+            backgroundColor: const Color(0xFFAECCDE),
             appBar: MyAppBar(
               context: context,
               user: user,
@@ -63,36 +64,19 @@ class _HomeScreenState extends State<HomeScreen> {
             bottomNavigationBar: MyBottomNavBar(
               user: user,
             ),
-            body: SafeArea(
+            body: const SafeArea(
               child: Center(
-                child: Column(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // Align vertically
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        height: 62,
-                        width: 175,
-                        decoration: BoxDecoration(
-                          color: const Color.fromRGBO(225, 234, 122, 1),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Center(
-                          child: Text(
-                            'New Game',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    const ExploreColumn(),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 16),
+                      NewGameButton(),
+                      SizedBox(height: 8),
+                      ExploreColumn(),
+                      SizedBox(height: 8),
+                      ReadyGamesColumn(),
+                    ],
+                  ),
                 ),
               ),
             ),

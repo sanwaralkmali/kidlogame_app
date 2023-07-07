@@ -1,5 +1,8 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
+import '../headers/explore-subjects-header.dart';
 import 'subjects-ListView.dart';
 
 class ExploreColumn extends StatelessWidget {
@@ -12,38 +15,29 @@ class ExploreColumn extends StatelessWidget {
       'Coding',
       'English',
       'Science',
+      'Physics',
+      'Chemistry',
+      'Biology',
       'History',
       'Puzzles',
-      'Games and Sports',
-      'Astronomy',
+      'Astronomy'
     ];
     List<String> courses2 = [
       'Geography',
-      'Art',
-      'Music',
       'Social Studies',
       'Foreign Language',
       'Cooking and Baking',
       'General Knowledge',
+      'Games and Sports',
+      'Art',
+      'Music',
       'Other'
     ];
     return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 20, bottom: 20),
+      padding: const EdgeInsets.only(left: 20, top: 4, bottom: 4, right: 20),
       child: Column(
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              Image.asset('assets/images/icons/transparency.png', height: 42),
-              const SizedBox(width: 12),
-              const Text(
-                'Explore',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
+          const ExploreHeader(),
           const SizedBox(height: 8), // Use height instead of width.
           CoursesListView(courses: courses1),
           const SizedBox(height: 8),
