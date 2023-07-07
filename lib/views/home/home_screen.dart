@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/user.dart';
+import '../app&bottomBars/appBar.dart';
+import '../app&bottomBars/bottom_navBar.dart';
+import 'homeLayout/explore-layout.dart';
+import 'buttons/new-game-btn.dart';
+import 'homeLayout/ready-games-layout.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,45 +17,72 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String username = '';
-  late KUser user;
-  Future<void> getUser() async {
+  Future<KUser> _getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      username = prefs.getString('username')!;
-    });
+    String username = prefs.getString('username')!;
+
     var snapshot = await FirebaseFirestore.instance
         .collection('Users')
         .where('username', isEqualTo: username)
         .get();
+
     var document = snapshot.docs.first;
-    setState(() {
-      user = KUser.fromMap(document.data());
-    });
-
-    print('user is $user');
-  }
-
-  @override
-  void initState() {
-    getUser();
-
-    super.initState();
+    return KUser.fromMap(document.data());
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, // Align vertically
-            children: <Widget>[
-              Text('Welcome to KidloGame', style: TextStyle(fontSize: 18.0)),
-            ],
-          ),
-        ),
-      ),
+    return FutureBuilder<KUser>(
+      future: _getUser(),
+      builder: (BuildContext context, AsyncSnapshot<KUser> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              title: Image.asset('assets/images/KidloGameLOGO.png', height: 65),
+              centerTitle: true,
+              backgroundColor: Colors.white,
+              toolbarHeight: 100,
+            ),
+            body: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return Text(
+            'Error: ${snapshot.error}',
+            style: const TextStyle(fontSize: 15),
+          );
+        } else {
+          KUser user = snapshot.data!;
+          return Scaffold(
+            backgroundColor: const Color(0xFFAECCDE),
+            appBar: MyAppBar(
+              context: context,
+              user: user,
+            ),
+            bottomNavigationBar: MyBottomNavBar(
+              user: user,
+            ),
+            body: const SafeArea(
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 16),
+                      NewGameButton(),
+                      SizedBox(height: 8),
+                      ExploreColumn(),
+                      SizedBox(height: 8),
+                      ReadyGamesColumn(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 }

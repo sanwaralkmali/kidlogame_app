@@ -46,7 +46,7 @@ flutter:
     - assets/images/
     - assets/images/graphics/
     - assets/images/icons/
-
+    - assets/images/subjects/
   fonts:
     - family: Balsamiq_Sans
       fonts:
