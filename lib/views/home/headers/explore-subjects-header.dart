@@ -9,12 +9,12 @@ class ExploreHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        Image.asset('assets/images/icons/transparency.png', height: 42),
+        Image.asset('assets/images/icons/transparency.png', height: 36),
         const SizedBox(width: 12),
         const Text(
-          'Explore',
+          'Explore Subjects',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),

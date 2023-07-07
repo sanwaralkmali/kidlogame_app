@@ -261,7 +261,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      width: 150,
+                      width: MediaQuery.of(context).size.width / 2.3,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
                         backgroundBlendMode: BlendMode.multiply,
@@ -290,7 +290,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     Container(
-                      width: 150,
+                      width: MediaQuery.of(context).size.width / 2.3,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
                         backgroundBlendMode: BlendMode.multiply,

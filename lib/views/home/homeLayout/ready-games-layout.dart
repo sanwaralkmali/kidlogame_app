@@ -16,7 +16,7 @@ class _ReadyGamesColumnState extends State<ReadyGamesColumn> {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.only(left: 20, top: 4, bottom: 4, right: 20),
+      padding: EdgeInsets.only(left: 12, top: 4, bottom: 4, right: 4),
       child: Column(
         children: [
           ReadyGamesHeader(),

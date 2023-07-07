@@ -13,11 +13,11 @@ class ReadyGamesHeader extends StatelessWidget {
         Row(
           children: [
             Image.asset('assets/images/icons/dice.png', height: 32),
-            const SizedBox(width: 8),
+            const SizedBox(width: 12),
             const Text(
               'Ready Games',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),

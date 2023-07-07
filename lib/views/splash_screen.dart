@@ -33,18 +33,18 @@ class _SplashScreenState extends State<SplashScreen> {
       });
       checkIfUserLoggedIn();
     });
-    Future.delayed(const Duration(milliseconds: 1)).then((_) {
+    Future.delayed(const Duration(seconds: 1)).then((_) {
       setState(() {
         _opacityText = 1;
       });
     });
-    Future.delayed(const Duration(milliseconds: 5)).then((_) {
+    Future.delayed(const Duration(seconds: 3)).then((_) {
       setState(() {
         _opacityLogo = 0;
         _opacityText = 0;
       });
     });
-    Future.delayed(const Duration(milliseconds: 1000)).then((_) {
+    Future.delayed(const Duration(milliseconds: 7500)).then((_) {
       if (isUserLoggedIn) {
         Navigator.of(context).pushReplacementNamed('/HomeScreen');
       } else {
