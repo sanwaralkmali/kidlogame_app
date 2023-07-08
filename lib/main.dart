@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/models/user.dart';
 import 'package:kidlogame_app/services/user-provider.dart';
+
 import 'package:kidlogame_app/views/login/login-screen.dart';
 import 'package:kidlogame_app/views/signup/sign_up_screen.dart';
 import 'package:kidlogame_app/views/splash_screen.dart';
@@ -9,11 +10,17 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
+import 'models/user.dart';
 import 'views/home/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -25,6 +32,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // Create the initialization Future outside of `build`:
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -56,10 +70,11 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'KidloGame',
       home: FutureBuilder(
-        // Initialize FlutterFire:
-        future: _initialization,
-        builder: (context, AsyncSnapshot<FirebaseApp> snapshot) {
-          // Check for errors
+        future: Future.wait([
+          _initialization,
+          Provider.of<UserProvider>(context, listen: false).fetchUser(),
+        ]),
+        builder: (context, AsyncSnapshot<List> snapshot) {
           if (snapshot.hasError) {
             print(
                 '_______________________ ERROR ERROR ERROR ERROR ERROR ERROR __________________________________');
@@ -71,14 +86,20 @@ class _MyAppState extends State<MyApp> {
               body: Center(
                 child: Text('Error'),
               ),
-            ); // replace with your error screen
+            );
           }
-          // Once complete, show your application
           if (snapshot.connectionState == ConnectionState.done) {
             return const SplashScreen();
           }
-          // Otherwise, show something whilst waiting for initialization to complete
-          return const CircularProgressIndicator(); // replace with your loading screen
+          return Scaffold(
+            appBar: AppBar(
+              title: Image.asset('assets/images/KidloGameLOGO.png', height: 65),
+              centerTitle: true,
+              backgroundColor: Colors.white,
+              toolbarHeight: 100,
+            ),
+            body: const CircularProgressIndicator(),
+          );
         },
       ),
       routes: <String, WidgetBuilder>{
@@ -86,6 +107,7 @@ class _MyAppState extends State<MyApp> {
         '/SplashScreen': (BuildContext context) => const SplashScreen(),
         '/LoginScreen': (BuildContext context) => const LoginScreen(),
         '/SignUpScreen': (BuildContext context) => const SignUpScreen(),
+        '/NewGameScreen': (BuildContext context) => const NewGameScreen(),
       },
     );
   }
