@@ -1,12 +1,9 @@
 // ignore_for_file: file_names
 
 import 'Package:flutter/material.dart';
-import '../../models/user.dart';
 
 class MyBottomNavBar extends StatefulWidget {
-  const MyBottomNavBar({super.key, required this.user});
-
-  final KUser user;
+  const MyBottomNavBar({super.key});
 
   @override
   State<MyBottomNavBar> createState() => _MyBottomNavBarState();
