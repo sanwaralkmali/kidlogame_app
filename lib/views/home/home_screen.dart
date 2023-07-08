@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/user.dart';
+<<<<<<< Updated upstream
 import '../app&bottomBars/appBar.dart';
 import '../app&bottomBars/bottom_navBar.dart';
+=======
+import '../../services/user-provider.dart';
+import '../../utils/app&bottomBars/appBar.dart';
+import '../../utils/app&bottomBars/bottom_navBar.dart';
+>>>>>>> Stashed changes
 import 'homeLayout/explore-layout.dart';
-import 'buttons/new-game-btn.dart';
+import '../../utils/buttons/new-game-btn.dart';
 import 'homeLayout/ready-games-layout.dart';
 
 class HomeScreen extends StatefulWidget {

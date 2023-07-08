@@ -1,10 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/utils/buttons/favorite-star-button.dart';
+import 'package:kidlogame_app/utils/buttons/like-heart-button.dart';
+import 'package:kidlogame_app/utils/buttons/start-game.dart';
 
-import '../buttons/favorite-star-button.dart';
-import '../buttons/like-heart-button.dart';
-import '../buttons/start-game.dart';
 import 'card-info.dart';
 
 class GameCard extends StatefulWidget {
