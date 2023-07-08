@@ -13,7 +13,9 @@ class _NewGameButtonState extends State<NewGameButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, '/NewGameScreen');
+      },
       child: Container(
         height: 62,
         width: 175,

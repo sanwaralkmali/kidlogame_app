@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, file_names
+// ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,13 +6,22 @@ import 'package:provider/provider.dart';
 import '../../models/user.dart';
 import '../../services/user-provider.dart';
 
-AppBar MyAppBar({required BuildContext context}) {
+AppBar NewGameAppBar({required BuildContext context}) {
   KUser? user = Provider.of<UserProvider>(context).user;
 
   return AppBar(
     toolbarHeight: 100,
     backgroundColor: Colors.white,
-    title: Image.asset('assets/images/KidloGameLOGO.png', height: 72),
+    leading: GestureDetector(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: const Icon(
+        Icons.arrow_back,
+        color: Colors.black,
+        size: 42,
+      ),
+    ),
     actions: <Widget>[
       GestureDetector(
         onTap: () {
@@ -24,7 +33,7 @@ AppBar MyAppBar({required BuildContext context}) {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Image.asset('assets/images/icons/man.png', height: 45),
+              Image.asset('assets/images/icons/man.png', height: 42),
               const SizedBox(height: 2),
               Text(
                 '${user!.firstName} ${user.lastName}',
