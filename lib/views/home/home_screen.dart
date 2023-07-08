@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/user.dart';
+
 import '../../services/user-provider.dart';
+
 import '../app&bottomBars/appBar.dart';
 import '../app&bottomBars/bottom_navBar.dart';
+
+import '../../services/user-provider.dart';
+import '../../utils/app&bottomBars/appBar.dart';
+import '../../utils/app&bottomBars/bottom_navBar.dart';
+
 import 'homeLayout/explore-layout.dart';
-import 'buttons/new-game-btn.dart';
+import '../../utils/buttons/new-game-btn.dart';
 import 'homeLayout/ready-games-layout.dart';
 
 class HomeScreen extends StatefulWidget {

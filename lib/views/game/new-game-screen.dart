@@ -2,6 +2,11 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:kidlogame_app/utils/app&bottomBars/bottom_navBar.dart';
+import 'package:kidlogame_app/views/game/new-game-card.dart';
+
+import '../../utils/app&bottomBars/new-game-appBar.dart';
+
 import '../app&bottomBars/new-game-appBar.dart';
 
 class NewGameScreen extends StatefulWidget {
@@ -25,6 +30,13 @@ class _NewGameScreenState extends State<NewGameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      backgroundColor: const Color(0xFFAECCDE),
+      appBar: NewGameAppBar(context: context),
+      bottomNavigationBar: const MyBottomNavBar(),
+      body: const Center(
+        child: NewGameCard(),
+
       appBar: NewGameAppBar(context: context),
       body: Center(
         child: Card(

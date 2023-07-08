@@ -1,9 +1,8 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/models/user.dart';
 import 'package:kidlogame_app/services/user-provider.dart';
-import 'package:kidlogame_app/views/game/new-game-screen.dart';
+
 import 'package:kidlogame_app/views/login/login-screen.dart';
 import 'package:kidlogame_app/views/signup/sign_up_screen.dart';
 import 'package:kidlogame_app/views/splash_screen.dart';
@@ -25,6 +24,14 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
+  MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // Create the initialization Future outside of `build`:
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -69,6 +76,12 @@ class _MyAppState extends State<MyApp> {
         ]),
         builder: (context, AsyncSnapshot<List> snapshot) {
           if (snapshot.hasError) {
+            print(
+                '_______________________ ERROR ERROR ERROR ERROR ERROR ERROR __________________________________');
+
+            print(snapshot.error);
+            print(
+                '________________________ERROR ERROR ERROR ERROR ERROR ERROR _________________________________ ');
             return const Scaffold(
               body: Center(
                 child: Text('Error'),

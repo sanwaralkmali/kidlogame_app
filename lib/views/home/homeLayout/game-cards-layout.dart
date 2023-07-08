@@ -1,8 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-
-import '../homeComponents/game-Card.dart';
+import 'package:kidlogame_app/utils/homeComponents/game-card.dart';
 
 class GamesLayout extends StatelessWidget {
   const GamesLayout({super.key});
