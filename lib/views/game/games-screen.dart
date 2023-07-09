@@ -1,5 +1,6 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/utils/app&bottomBars/appBar.dart';
+import 'package:kidlogame_app/utils/app&bottomBars/main-appBar.dart';
 import 'package:kidlogame_app/views/game/games-layout.dart';
 
 class GamesScreen extends StatefulWidget {

@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/utils/new-game-components/game-type.dart';
 import 'package:kidlogame_app/utils/new-game-components/new-game-difficulty.dart';

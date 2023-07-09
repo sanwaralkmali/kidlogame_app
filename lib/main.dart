@@ -68,9 +68,7 @@ class _MyAppState extends State<MyApp> {
       _getUser().then((user) {
         Provider.of<UserProvider>(context, listen: false).user;
       }).catchError((error) {
-        if (error.toString() == 'Exception: User not logged in') {
-          print('User not logged in');
-        }
+        if (error.toString() == 'Exception: User not logged in') {}
       });
     });
   }

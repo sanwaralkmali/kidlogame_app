@@ -1,7 +1,5 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/services/navigation-bar-provider.dart';
-import 'package:provider/provider.dart';
-
 import '../home/home_screen.dart';
 
 class LeaderBoardHeader extends StatelessWidget {

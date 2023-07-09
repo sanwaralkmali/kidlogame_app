@@ -1,5 +1,6 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/utils/app&bottomBars/appBar.dart';
+import 'package:kidlogame_app/utils/app&bottomBars/main-appBar.dart';
 import 'package:kidlogame_app/utils/buttons/new-game-btn.dart';
 import 'package:kidlogame_app/views/home/homeLayout/explore-layout.dart';
 import 'package:kidlogame_app/views/home/homeLayout/ready-games-layout.dart';
