@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kidlogame_app/services/navigation-bar-provider.dart';
 import 'package:provider/provider.dart';
 
+import '../home/home_screen.dart';
+
 class LeaderBoardHeader extends StatelessWidget {
   const LeaderBoardHeader({super.key});
 
@@ -16,8 +18,8 @@ class LeaderBoardHeader extends StatelessWidget {
             width: 36,
           ),
           onPressed: () {
-            Provider.of<NavigationProvider>(context, listen: false).setIndex(0);
-            Navigator.pop(context);
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
           },
         ),
         const Text(

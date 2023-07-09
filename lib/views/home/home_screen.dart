@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/utils/app&bottomBars/appBar.dart';
-import 'package:kidlogame_app/utils/app&bottomBars/bottom_navBar.dart';
+import 'package:kidlogame_app/views/game/games-screen.dart';
+import 'package:kidlogame_app/views/home/homeLayout/home-main-content.dart';
+import 'package:kidlogame_app/views/leaderboard/main-leaderboard-screen.dart';
 import 'package:provider/provider.dart';
-
 import '../../models/user.dart';
-
 import '../../services/user-provider.dart';
-
-import 'homeLayout/explore-layout.dart';
-import '../../utils/buttons/new-game-btn.dart';
-import 'homeLayout/ready-games-layout.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -19,6 +15,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> _children = const [
+    HomeMainContent(),
+    GamesScreen(),
+    LeaderBoardScreen(),
+    HomeMainContent(),
+  ];
+
+  void _onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     KUser? user = Provider.of<UserProvider>(context).user;
@@ -30,26 +41,32 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     } else {
       return Scaffold(
-        backgroundColor: const Color(0xFFAECCDE),
-        appBar: MyAppBar(
-          context: context,
+        body: IndexedStack(
+          index: _currentIndex,
+          children: _children,
         ),
-        bottomNavigationBar: const MyBottomNavBar(),
-        body: const SafeArea(
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(height: 16),
-                  NewGameButton(),
-                  SizedBox(height: 8),
-                  ExploreColumn(),
-                  SizedBox(height: 8),
-                  ReadyGamesColumn(),
-                ],
-              ),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: _onTabTapped,
+          currentIndex: _currentIndex,
+          items: [
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/icons/home2.png', height: 35),
+              label: 'Home',
             ),
-          ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/icons/abc.png', height: 35),
+              label: 'Games',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/icons/podium3.png', height: 35),
+              label: 'Leaderboard',
+            ),
+            BottomNavigationBarItem(
+              icon: Image.asset('assets/images/icons/online-learning.png',
+                  height: 35),
+              label: 'Learning',
+            ),
+          ],
         ),
       );
     }
