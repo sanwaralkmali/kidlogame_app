@@ -12,7 +12,8 @@ AppBar MyAppBar({required BuildContext context}) {
   return AppBar(
     toolbarHeight: 100,
     backgroundColor: Colors.white,
-    title: Image.asset('assets/images/KidloGameLOGO.png', height: 72),
+    automaticallyImplyLeading: false,
+    title: Image.asset('assets/images/KidloGameLOGO.png', width: 72),
     actions: <Widget>[
       GestureDetector(
         onTap: () {

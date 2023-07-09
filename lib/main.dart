@@ -7,6 +7,7 @@ import 'package:kidlogame_app/services/navigation-bar-provider.dart';
 import 'package:kidlogame_app/services/user-provider.dart';
 import 'package:kidlogame_app/views/game/games-screen.dart';
 import 'package:kidlogame_app/views/game/new-game-screen.dart';
+import 'package:kidlogame_app/views/leaderboard/main-leaderboard-screen.dart';
 
 import 'package:kidlogame_app/views/login/login-screen.dart';
 import 'package:kidlogame_app/views/signup/sign_up_screen.dart';
@@ -102,6 +103,8 @@ class _MyAppState extends State<MyApp> {
         '/SignUpScreen': (BuildContext context) => const SignUpScreen(),
         '/NewGameScreen': (BuildContext context) => const NewGameScreen(),
         '/GamesScreen': (BuildContext context) => const GamesScreen(),
+        '/LeaderboardScreen': (BuildContext context) =>
+            const LeaderBoardScreen(),
       },
     );
   }

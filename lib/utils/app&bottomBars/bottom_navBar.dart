@@ -4,6 +4,7 @@ import 'Package:flutter/material.dart';
 import 'package:kidlogame_app/services/navigation-bar-provider.dart';
 import 'package:kidlogame_app/views/game/games-screen.dart';
 import 'package:kidlogame_app/views/home/home_screen.dart';
+import 'package:kidlogame_app/views/leaderboard/main-leaderboard-screen.dart';
 import 'package:provider/provider.dart';
 
 class MyBottomNavBar extends StatefulWidget {
@@ -57,8 +58,10 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
                 MaterialPageRoute(builder: (context) => const GamesScreen()));
             break;
           case 2:
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const LeaderBoardScreen()));
             break;
           case 3:
             Navigator.pushReplacement(context,
