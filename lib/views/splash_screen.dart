@@ -38,19 +38,11 @@ class _SplashScreenState extends State<SplashScreen> {
         _opacityText = 1;
       });
     });
-    Future.delayed(const Duration(seconds: 3)).then((_) {
+    Future.delayed(const Duration(milliseconds: 3500)).then((_) {
       setState(() {
         _opacityLogo = 0;
         _opacityText = 0;
       });
-    });
-    Future.delayed(const Duration(milliseconds: 7500)).then((_) {
-      if (isUserLoggedIn) {
-        Navigator.of(context).pushReplacementNamed('/HomeScreen');
-      } else {
-        Navigator.of(context).pushReplacementNamed(
-            '/LoginScreen'); // Replace '/home' with the route name of your home screen
-      }
     });
   }
 

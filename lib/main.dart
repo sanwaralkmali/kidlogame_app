@@ -33,8 +33,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final FirebaseApp _app = Firebase.app();
-
   Future<KUser> _getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String username = prefs.getString('username')!;
@@ -53,7 +51,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _getUser().then((user) {
-      Provider.of<UserProvider>(context, listen: false).fetchUser();
+      Provider.of<UserProvider>(context, listen: false).user;
     });
   }
 
@@ -65,29 +63,21 @@ class _MyAppState extends State<MyApp> {
       home: FutureBuilder(
         future: Future.wait([
           Provider.of<UserProvider>(context, listen: false).fetchUser(),
+          Future.delayed(const Duration(seconds: 5))
         ]),
         builder: (context, AsyncSnapshot<List> snapshot) {
-          if (snapshot!.connectionState == ConnectionState.done) {
+          if (snapshot.connectionState == ConnectionState.waiting ||
+              snapshot.connectionState == ConnectionState.none) {
             return const SplashScreen();
-          }
-          if (snapshot!.hasError) {
+          } else if (snapshot.hasError) {
             return const Scaffold(
               body: Center(
                 child: Text('Error'),
               ),
             );
+          } else {
+            return const HomeScreen();
           }
-          return Scaffold(
-            appBar: AppBar(
-              title: Image.asset('assets/images/KidloGameLOGO.png', height: 65),
-              centerTitle: true,
-              backgroundColor: Colors.white,
-              toolbarHeight: 100,
-            ),
-            body: const Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
         },
       ),
       routes: <String, WidgetBuilder>{
