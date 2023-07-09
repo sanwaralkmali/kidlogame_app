@@ -1,0 +1,50 @@
+[33mc93b255[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{0}: pull: Merge made by the 'ort' strategy.
+[33m9a7629a[m HEAD@{1}: merge main_ui: Merge made by the 'ort' strategy.
+[33mb46ed67[m HEAD@{2}: checkout: moving from new_game to main
+[33m32783e8[m[33m ([m[1;32mnew_game[m[33m)[m HEAD@{3}: commit: feat: Completed the New Game Screen with all components
+[33m7ea2143[m HEAD@{4}: checkout: moving from main_ui to new_game
+[33m0e743ea[m[33m ([m[1;31morigin/main_ui[m[33m, [m[1;32mmain_ui[m[33m)[m HEAD@{5}: reset: moving to HEAD
+[33m0e743ea[m[33m ([m[1;31morigin/main_ui[m[33m, [m[1;32mmain_ui[m[33m)[m HEAD@{6}: commit: Implement state management system and initiate new game screen development
+[33m7ea2143[m HEAD@{7}: checkout: moving from main to main_ui
+[33mb46ed67[m HEAD@{8}: pull: Fast-forward
+[33mee13d65[m HEAD@{9}: checkout: moving from main_ui to main
+[33m7ea2143[m HEAD@{10}: commit: Fixed animation duration and conducted app testing on personal device. Fixed all identified bugs. Removed unnecessary images, fonts, and files, storing them in a separate folder outside the project for potential future use.
+[33me803d65[m HEAD@{11}: checkout: moving from main to main_ui
+[33mee13d65[m HEAD@{12}: reset: moving to HEAD
+[33mee13d65[m HEAD@{13}: checkout: moving from main to main
+[33mee13d65[m HEAD@{14}: pull: Fast-forward
+[33m28bd547[m HEAD@{15}: checkout: moving from main_ui to main
+[33me803d65[m HEAD@{16}: checkout: moving from main to main_ui
+[33m28bd547[m HEAD@{17}: checkout: moving from main_ui to main
+[33me803d65[m HEAD@{18}: commit: Completed home screen layout and component organization. Designed Explore Subjects and Ready Games list views.
+[33me4bf228[m HEAD@{19}: commit: initial commit of home screen:
+[33m28bd547[m HEAD@{20}: checkout: moving from main to main_ui
+[33m28bd547[m HEAD@{21}: commit: Implement persistent user sessions and fetch user data upon login
+[33m720732f[m[33m ([m[1;31morigin/db[m[33m, [m[1;32mdb[m[33m)[m HEAD@{22}: merge db: Fast-forward
+[33mdfc1592[m HEAD@{23}: checkout: moving from db to main
+[33m720732f[m[33m ([m[1;31morigin/db[m[33m, [m[1;32mdb[m[33m)[m HEAD@{24}: commit: Enhance User Data and Implement Unique Username Mechanism
+[33mdfc1592[m HEAD@{25}: checkout: moving from main to db
+[33mdfc1592[m HEAD@{26}: merge db: Fast-forward
+[33m40e09c0[m HEAD@{27}: checkout: moving from db to main
+[33mdfc1592[m HEAD@{28}: commit: Summary:
+[33m40e09c0[m HEAD@{29}: checkout: moving from main to db
+[33m40e09c0[m HEAD@{30}: reset: moving to HEAD
+[33m40e09c0[m HEAD@{31}: checkout: moving from data_models to main
+[33mc1d25e4[m[33m ([m[1;32mdata_models[m[33m)[m HEAD@{32}: checkout: moving from main to data_models
+[33m40e09c0[m HEAD@{33}: reset: moving to HEAD
+[33m40e09c0[m HEAD@{34}: reset: moving to HEAD
+[33m40e09c0[m HEAD@{35}: checkout: moving from DB-helper to main
+[33m40e09c0[m HEAD@{36}: checkout: moving from main to DB-helper
+[33m40e09c0[m HEAD@{37}: commit: Implemented user sign in flow
+[33m677274e[m HEAD@{38}: commit: feat: Add reset password screen
+[33m36cda55[m HEAD@{39}: commit: feat: Complete Login Screen UI
+[33mba86d51[m HEAD@{40}: commit: Feat: Implement animated splash screen with customized welcoming message
+[33m6b156f2[m HEAD@{41}: merge data_models: Merge made by the 'ort' strategy.
+[33m5969687[m HEAD@{42}: checkout: moving from data_models to main
+[33mc1d25e4[m[33m ([m[1;32mdata_models[m[33m)[m HEAD@{43}: commit: Dtat Models : Define the data models required in the application.
+[33m89b7c48[m HEAD@{44}: checkout: moving from main to data_models
+[33m5969687[m HEAD@{45}: commit: New Branch : data_models
+[33m89b7c48[m HEAD@{46}: pull: Fast-forward
+[33m51de64a[m HEAD@{47}: commit: Enhancing project clarity: Updated README.md to provide better project understanding and navigation. Knowledge is power!
+[33m03e7f28[m HEAD@{48}: Branch: renamed refs/heads/master to refs/heads/main
+[33m03e7f28[m HEAD@{50}: commit (initial): Initial commit: First step in building the KIDLOGAME project.

@@ -8,10 +8,6 @@ import '../../services/user-provider.dart';
 import '../app&bottomBars/appBar.dart';
 import '../app&bottomBars/bottom_navBar.dart';
 
-import '../../services/user-provider.dart';
-import '../../utils/app&bottomBars/appBar.dart';
-import '../../utils/app&bottomBars/bottom_navBar.dart';
-
 import 'homeLayout/explore-layout.dart';
 import '../../utils/buttons/new-game-btn.dart';
 import 'homeLayout/ready-games-layout.dart';

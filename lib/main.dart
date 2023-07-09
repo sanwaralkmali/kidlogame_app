@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/models/user.dart';
 import 'package:kidlogame_app/services/user-provider.dart';
+import 'package:kidlogame_app/views/game/new-game-screen.dart';
 
 import 'package:kidlogame_app/views/login/login-screen.dart';
 import 'package:kidlogame_app/views/signup/sign_up_screen.dart';
@@ -10,11 +11,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
-import 'models/user.dart';
 import 'views/home/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   runApp(
     ChangeNotifierProvider(
       create: (context) => UserProvider(),
@@ -24,24 +26,14 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  // Create the initialization Future outside of `build`:
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  final FirebaseApp _app = Firebase.app();
 
   Future<KUser> _getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -53,6 +45,7 @@ class _MyAppState extends State<MyApp> {
         .get();
 
     var document = snapshot.docs.first;
+
     return KUser.fromMap(document.data());
   }
 
@@ -71,25 +64,18 @@ class _MyAppState extends State<MyApp> {
       title: 'KidloGame',
       home: FutureBuilder(
         future: Future.wait([
-          _initialization,
           Provider.of<UserProvider>(context, listen: false).fetchUser(),
         ]),
         builder: (context, AsyncSnapshot<List> snapshot) {
-          if (snapshot.hasError) {
-            print(
-                '_______________________ ERROR ERROR ERROR ERROR ERROR ERROR __________________________________');
-
-            print(snapshot.error);
-            print(
-                '________________________ERROR ERROR ERROR ERROR ERROR ERROR _________________________________ ');
+          if (snapshot!.connectionState == ConnectionState.done) {
+            return const SplashScreen();
+          }
+          if (snapshot!.hasError) {
             return const Scaffold(
               body: Center(
                 child: Text('Error'),
               ),
             );
-          }
-          if (snapshot.connectionState == ConnectionState.done) {
-            return const SplashScreen();
           }
           return Scaffold(
             appBar: AppBar(
@@ -98,7 +84,9 @@ class _MyAppState extends State<MyApp> {
               backgroundColor: Colors.white,
               toolbarHeight: 100,
             ),
-            body: const CircularProgressIndicator(),
+            body: const Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         },
       ),

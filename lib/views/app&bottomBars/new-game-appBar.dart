@@ -19,7 +19,7 @@ AppBar NewGameAppBar({required BuildContext context}) {
       child: const Icon(
         Icons.arrow_back,
         color: Colors.black,
-        size: 42,
+        size: 36,
       ),
     ),
     actions: <Widget>[
