@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison, use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/models/user.dart';
@@ -35,7 +37,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Future<KUser> _getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String username = prefs.getString('username')!;
+    String? username = prefs.getString('username');
+
+    if (username == null) {
+      throw Exception('User not logged in');
+    }
 
     var snapshot = await FirebaseFirestore.instance
         .collection('Users')
@@ -50,8 +56,14 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    _getUser().then((user) {
-      Provider.of<UserProvider>(context, listen: false).user;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _getUser().then((user) {
+        Provider.of<UserProvider>(context, listen: false).user;
+      }).catchError((error) {
+        if (error.toString() == 'Exception: User not logged in') {
+          print('User not logged in');
+        }
+      });
     });
   }
 
@@ -70,11 +82,7 @@ class _MyAppState extends State<MyApp> {
               snapshot.connectionState == ConnectionState.none) {
             return const SplashScreen();
           } else if (snapshot.hasError) {
-            return const Scaffold(
-              body: Center(
-                child: Text('Error'),
-              ),
-            );
+            return const LoginScreen();
           } else {
             return const HomeScreen();
           }

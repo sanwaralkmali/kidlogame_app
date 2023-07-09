@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kidlogame_app/services/user-provider.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/user.dart';
@@ -40,30 +42,30 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         errorMessage = 'Invalid email or password';
       });
-    } else {
-      Map<String, dynamic>? data = snapshot.docs.first.data();
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          shape: Border(top: BorderSide(color: Colors.green, width: 2)),
-          closeIconColor: Color.fromARGB(255, 183, 84, 95),
-          showCloseIcon: true,
-          content: Text(
-            'Login successful',
-            style: TextStyle(
-              color: Color.fromARGB(255, 128, 211, 130),
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      );
-      setUserLoggedIn(data['username']);
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
-        ),
-      );
     }
+    Map<String, dynamic>? data = snapshot.docs.first.data();
+    setUserLoggedIn(data['username']);
+    Provider.of<UserProvider>(context, listen: false).fetchUser();
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        shape: Border(top: BorderSide(color: Colors.green, width: 2)),
+        closeIconColor: Color.fromARGB(255, 183, 84, 95),
+        showCloseIcon: true,
+        content: Text(
+          'Login successful',
+          style: TextStyle(
+            color: Color.fromARGB(255, 128, 211, 130),
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const HomeScreen(),
+      ),
+    );
   }
 
   @override

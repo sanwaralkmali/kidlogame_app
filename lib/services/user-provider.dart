@@ -13,7 +13,12 @@ class UserProvider with ChangeNotifier {
   Future<void> fetchUser() async {
     await Firebase.initializeApp();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String username = prefs.getString('username')!;
+    String? username = prefs.getString('username');
+
+    // If the username is null, throw an exception
+    if (username == null) {
+      throw Exception('User not logged in');
+    }
 
     var snapshot = await FirebaseFirestore.instance
         .collection('Users')
