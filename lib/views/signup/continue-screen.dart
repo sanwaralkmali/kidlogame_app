@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kidlogame_app/services/user-provider.dart';
+import 'package:provider/provider.dart';
 import '../home/home_screen.dart';
 import 'dateSelector.dart';
 import 'favoriteSubject.dart';
@@ -20,11 +22,11 @@ class ContinueScreen extends StatefulWidget {
 }
 
 class _ContinueScreenState extends State<ContinueScreen> {
-  Future<void> setUserLoggedIn(KUser user) async {
+  Future<void> setUserLoggedIn(username) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       prefs.setBool('isUserLoggedIn', true);
-      prefs.setString('username', user.username);
+      prefs.setString('username', username);
     });
   }
 
@@ -38,7 +40,9 @@ class _ContinueScreenState extends State<ContinueScreen> {
           content: Text('Sign up successful & Logged in'),
         ),
       );
-      setUserLoggedIn(user);
+      setUserLoggedIn(user.username);
+      Provider.of<UserProvider>(context, listen: false).fetchUser();
+
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const HomeScreen()),
       );

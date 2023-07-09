@@ -64,7 +64,9 @@ class KUser {
       grade: map['grade'],
       gender: map['gender'],
       favSubject: map['favSubject'],
-      interests: List<String>.from(map['interests']),
+      interests: map['interests'] != null
+          ? List<String>.from(map['interests'])
+          : null, // check if map['interests'] is not null before constructing List
       level: map['level'],
       totalPoints: map['totalPoints'],
       subjectPoints: map['subjectPoints'] != null
