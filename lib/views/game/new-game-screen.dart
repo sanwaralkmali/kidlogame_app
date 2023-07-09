@@ -1,11 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api, file_names
 
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/views/app&bottomBars/bottom_navBar.dart';
+import 'package:kidlogame_app/utils/app&bottomBars/bottom_navBar.dart';
+import 'package:kidlogame_app/utils/app&bottomBars/new-game-appBar.dart';
 
 import 'package:kidlogame_app/views/game/new-game-card.dart';
-
-import '../app&bottomBars/new-game-appBar.dart';
 
 class NewGameScreen extends StatefulWidget {
   const NewGameScreen({super.key});
@@ -18,6 +17,7 @@ class _NewGameScreenState extends State<NewGameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFAECCDE),
       appBar: NewGameAppBar(context: context),
       body: Center(
         child: Container(

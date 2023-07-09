@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/utils/app&bottomBars/appBar.dart';
+import 'package:kidlogame_app/utils/app&bottomBars/bottom_navBar.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/user.dart';
 
 import '../../services/user-provider.dart';
-
-import '../app&bottomBars/appBar.dart';
-import '../app&bottomBars/bottom_navBar.dart';
 
 import 'homeLayout/explore-layout.dart';
 import '../../utils/buttons/new-game-btn.dart';

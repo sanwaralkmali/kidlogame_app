@@ -3,7 +3,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/models/user.dart';
+import 'package:kidlogame_app/services/navigation-bar-provider.dart';
 import 'package:kidlogame_app/services/user-provider.dart';
+import 'package:kidlogame_app/views/game/games-screen.dart';
 import 'package:kidlogame_app/views/game/new-game-screen.dart';
 
 import 'package:kidlogame_app/views/login/login-screen.dart';
@@ -20,8 +22,13 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => UserProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider()),
+        ChangeNotifierProvider(
+          create: (context) => NavigationProvider(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );
@@ -94,6 +101,7 @@ class _MyAppState extends State<MyApp> {
         '/LoginScreen': (BuildContext context) => const LoginScreen(),
         '/SignUpScreen': (BuildContext context) => const SignUpScreen(),
         '/NewGameScreen': (BuildContext context) => const NewGameScreen(),
+        '/GamesScreen': (BuildContext context) => const GamesScreen(),
       },
     );
   }
