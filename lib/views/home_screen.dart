@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:kidlogame_app/views/game/games-screen.dart';
 import 'package:kidlogame_app/views/home/homeLayout/home-main-content.dart';
 import 'package:kidlogame_app/views/leaderboard/main-leaderboard-screen.dart';
+import 'package:kidlogame_app/views/learning/main-learning-screen.dart';
 import 'package:provider/provider.dart';
-import '../../models/user.dart';
-import '../../services/user-provider.dart';
+import '../models/user.dart';
+import '../services/user-provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeMainContent(),
     GamesScreen(),
     LeaderBoardScreen(),
-    HomeMainContent(),
+    LearningScreen(),
   ];
 
   void _onTabTapped(int index) {

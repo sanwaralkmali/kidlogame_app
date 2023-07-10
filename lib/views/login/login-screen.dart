@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/user.dart';
-import '../home/home_screen.dart';
+import '../home_screen.dart';
 import 'forget-password.dart';
 
 class LoginScreen extends StatefulWidget {

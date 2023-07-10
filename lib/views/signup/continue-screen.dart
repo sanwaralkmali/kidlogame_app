@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kidlogame_app/services/user-provider.dart';
 import 'package:provider/provider.dart';
-import '../home/home_screen.dart';
+import '../home_screen.dart';
 import 'dateSelector.dart';
 import 'favoriteSubject.dart';
 import 'ganderSelector.dart';

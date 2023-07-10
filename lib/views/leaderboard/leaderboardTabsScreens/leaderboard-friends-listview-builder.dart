@@ -3,17 +3,22 @@
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/models/user.dart';
 import 'package:kidlogame_app/services/user-provider.dart';
+import 'package:kidlogame_app/utils/showDialogs/delete-friend-dialog.dart';
 import 'package:provider/provider.dart';
 
-class LeaderBoardListViewItem extends StatefulWidget {
-  const LeaderBoardListViewItem({super.key});
+class LeaderBoardFriendsListViewItem extends StatefulWidget {
+  final String user;
+  final int index;
+  const LeaderBoardFriendsListViewItem(
+      {super.key, required this.user, required this.index});
 
   @override
-  State<LeaderBoardListViewItem> createState() =>
-      _LeaderBoardListViewItemState();
+  State<LeaderBoardFriendsListViewItem> createState() =>
+      _LeaderBoardFriendsListViewItemState();
 }
 
-class _LeaderBoardListViewItemState extends State<LeaderBoardListViewItem> {
+class _LeaderBoardFriendsListViewItemState
+    extends State<LeaderBoardFriendsListViewItem> {
   @override
   Widget build(BuildContext context) {
     KUser? user = Provider.of<UserProvider>(context).user;
@@ -56,7 +61,7 @@ class _LeaderBoardListViewItemState extends State<LeaderBoardListViewItem> {
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.45,
               child: Text(
-                '${user.firstName} ${user.lastName}',
+                widget.user,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 12,
@@ -74,7 +79,7 @@ class _LeaderBoardListViewItemState extends State<LeaderBoardListViewItem> {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    '1${user.totalPoints}00',
+                    '${((100 / (widget.index + 1) * 5)).round()}',
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 12,
@@ -88,7 +93,10 @@ class _LeaderBoardListViewItemState extends State<LeaderBoardListViewItem> {
               child: Align(
                 alignment: Alignment.centerRight,
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDeleteConfirmDialog(
+                        context, "Friend ${widget.index + 1}");
+                  },
                   icon: Image.asset(
                     'assets/images/icons/delete-friend.png',
                     width: 32,

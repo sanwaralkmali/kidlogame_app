@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import '../home/home_screen.dart';
+import '../home_screen.dart';
 
 class LeaderBoardHeader extends StatelessWidget {
   const LeaderBoardHeader({super.key});

@@ -62,7 +62,7 @@ class _LeaderBoardPlayersState extends State<LeaderBoardPlayers> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.45,
                   child: Text(
-                    '${user.firstName} ${user.lastName}',
+                    'Player ${index + 1}',
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 12,
@@ -80,7 +80,7 @@ class _LeaderBoardPlayersState extends State<LeaderBoardPlayers> {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        '1${user.totalPoints}00',
+                        '${(1000 * 3 + 75 / (index + 1)).round()}',
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 12,
@@ -94,7 +94,22 @@ class _LeaderBoardPlayersState extends State<LeaderBoardPlayers> {
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        SnackBar snackBar = SnackBar(
+                          content: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                  'Friend request sent to Player ${index + 1}'),
+                              const Icon(
+                                Icons.check_circle_outline,
+                                color: Color.fromARGB(255, 111, 203, 114),
+                              ),
+                            ],
+                          ),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
                       icon: Image.asset(
                         'assets/images/icons/addFriend.png',
                         width: 32,

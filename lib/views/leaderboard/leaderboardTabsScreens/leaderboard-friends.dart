@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/utils/showDialogs/add-new-friend-dialog.dart';
 import 'package:kidlogame_app/views/leaderboard/leaderboardTabsScreens/leaderboard-friends-listview-builder.dart';
 
 class LeaderBoardFriends extends StatefulWidget {
@@ -11,6 +12,44 @@ class LeaderBoardFriends extends StatefulWidget {
 }
 
 class _LeaderBoardFriendsState extends State<LeaderBoardFriends> {
+  TextEditingController _controller = TextEditingController();
+  List<String> friends = [
+    'Friend 1',
+    'Friend 2',
+    'Friend 3',
+    'Friend 4',
+    'Friend 5',
+    'Friend 6',
+    'Friend 7',
+    'Friend 8',
+    'Friend 9',
+    'Friend 10',
+    'Friend 11',
+    'Friend 12',
+    'Friend 13',
+    'Friend 14',
+    'Friend 15',
+    'Friend 16',
+    'Friend 17',
+    'Friend 18',
+    'Friend 19',
+    'Friend 20',
+    'Friend 21',
+    'Friend 22',
+    'Friend 23',
+    'Friend 24',
+    'Friend 25',
+    'Friend 26',
+    'Friend 27'
+  ];
+  List<String> filteredFriends = [];
+
+  @override
+  void initState() {
+    filteredFriends = friends;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -56,50 +95,67 @@ class _LeaderBoardFriendsState extends State<LeaderBoardFriends> {
                                 .withOpacity(0.5),
                           ),
                           const SizedBox(width: 8),
-                          const Expanded(
+                          Expanded(
                             child: TextField(
-                              decoration: InputDecoration(
+                              controller: _controller,
+                              decoration: const InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Search ...',
                               ),
+                              onChanged: (value) {
+                                print(
+                                    ' _____________________________ $filteredFriends ________________________________');
+                                setState(() {
+                                  filteredFriends = friends
+                                      .where((friend) => friend
+                                          .toLowerCase()
+                                          .contains(value.toLowerCase()))
+                                      .toList();
+                                });
+                              },
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.3,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(170, 225, 234, 122),
-                        borderRadius: BorderRadius.circular(8),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 0.5,
-                            blurRadius: 2,
-                            offset: const Offset(
-                                0, 1), // changes position of shadow
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/images/icons/addNewFriend.png',
-                            height: 36,
-                          ),
-                          const SizedBox(height: 2),
-                          const Text(
-                            'Add New Friend',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      onTap: () {
+                        showAddFriendDialog(context);
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.3,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(170, 225, 234, 122),
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 0.5,
+                              blurRadius: 2,
+                              offset: const Offset(
+                                  0, 1), // changes position of shadow
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/images/icons/addNewFriend.png',
+                              height: 36,
+                            ),
+                            const SizedBox(height: 2),
+                            const Text(
+                              'Add New Friend',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(width: 2),
@@ -113,10 +169,16 @@ class _LeaderBoardFriendsState extends State<LeaderBoardFriends> {
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
-              return const LeaderBoardListViewItem();
+              return LeaderBoardFriendsListViewItem(
+                user: filteredFriends[index],
+                index: index,
+              );
             },
-            childCount: 18,
+            childCount: filteredFriends.length,
           ),
+        ),
+        const SliverToBoxAdapter(
+          child: SizedBox(height: 16),
         ),
       ],
     );
