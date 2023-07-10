@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import 'package:kidlogame_app/models/user.dart';
 import 'package:kidlogame_app/services/navigation-bar-provider.dart';
 import 'package:kidlogame_app/services/user-provider.dart';
@@ -21,7 +22,11 @@ import 'views/home_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  final prefs = await SharedPreferences.getInstance();
+  final theme = prefs.getString('theme') ?? 'dark';
+  AppTheme.setThemeMode(theme);
 
+  // ADD THIS LINE
   runApp(
     MultiProvider(
       providers: [

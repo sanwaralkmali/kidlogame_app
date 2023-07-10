@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import 'package:kidlogame_app/utils/app&bottomBars/main-appBar.dart';
 import 'package:kidlogame_app/utils/buttons/new-game-btn.dart';
 import 'package:kidlogame_app/views/home/homeLayout/explore-layout.dart';
@@ -11,7 +12,7 @@ class HomeMainContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFAECCDE),
+      backgroundColor: AppTheme.scaffoldBackgroundColor,
       appBar: MyAppBar(
         context: context,
       ),

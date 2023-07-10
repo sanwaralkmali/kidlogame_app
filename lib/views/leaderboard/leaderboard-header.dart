@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import '../home_screen.dart';
 
 class LeaderBoardHeader extends StatelessWidget {
@@ -22,10 +23,11 @@ class LeaderBoardHeader extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const HomeScreen()));
             },
           ),
-          const Text(
+          Text(
             'Leaderboard',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: AppTheme.EXTRA_LARGE_TEXT_SIZE,
+              color: AppTheme.seconderyTextColor,
               fontWeight: FontWeight.bold,
             ),
           ),

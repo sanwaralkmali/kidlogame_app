@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 
 class NewGameDifficulty extends StatefulWidget {
   const NewGameDifficulty({super.key});
@@ -15,12 +16,13 @@ class _NewGameDifficultyState extends State<NewGameDifficulty> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 15.0),
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0),
           child: Text(
             'Difficulty : ',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+              color: AppTheme.seconderyTextColor,
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -37,10 +39,18 @@ class _NewGameDifficultyState extends State<NewGameDifficulty> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   color: (selectedOption == 'easy')
-                      ? const Color(0xFF84CE7D)
-                      : const Color(0xFFF1D9D9),
+                      ? AppTheme.selectedTap
+                      : AppTheme.tapColor,
                 ),
-                child: const Center(child: Text('Easy')),
+                child: Center(
+                    child: Text(
+                  'Easy',
+                  style: TextStyle(
+                    fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+                    color: AppTheme.seconderyTextColor,
+                    fontWeight: FontWeight.w400,
+                  ),
+                )),
               ),
             ),
             const SizedBox(width: 16),
@@ -52,10 +62,18 @@ class _NewGameDifficultyState extends State<NewGameDifficulty> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   color: (selectedOption == 'medium')
-                      ? const Color(0xFF84CE7D)
-                      : const Color(0xFFF1D9D9),
+                      ? AppTheme.selectedTap
+                      : AppTheme.tapColor,
                 ),
-                child: const Center(child: Text('Medium')),
+                child: Center(
+                    child: Text(
+                  'Medium',
+                  style: TextStyle(
+                    fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+                    color: AppTheme.seconderyTextColor,
+                    fontWeight: FontWeight.w400,
+                  ),
+                )),
               ),
             ),
             const SizedBox(width: 16),
@@ -67,10 +85,18 @@ class _NewGameDifficultyState extends State<NewGameDifficulty> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
                   color: (selectedOption == 'hard')
-                      ? const Color(0xFF84CE7D)
-                      : const Color(0xFFF1D9D9),
+                      ? AppTheme.selectedTap
+                      : AppTheme.tapColor,
                 ),
-                child: const Center(child: Text('Hard')),
+                child: Center(
+                    child: Text(
+                  'Hard',
+                  style: TextStyle(
+                    fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+                    color: AppTheme.seconderyTextColor,
+                    fontWeight: FontWeight.w400,
+                  ),
+                )),
               ),
             ),
           ],

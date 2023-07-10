@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 
 Widget getCardInfo(BuildContext context, {gameType, subject, grade, level}) {
   return GridView(
@@ -17,14 +18,14 @@ Widget getCardInfo(BuildContext context, {gameType, subject, grade, level}) {
         width: 120,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: const Color(0xFF6A9BD5),
+          color: AppTheme.subjectChipBackground,
         ),
         child: Center(
           child: Text(
             gameType,
-            style: const TextStyle(
-              fontSize: 10,
-              color: Colors.black,
+            style: TextStyle(
+              fontSize: AppTheme.SMALL_TEXT_SIZE,
+              color: AppTheme.seconderyTextColor,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -33,14 +34,14 @@ Widget getCardInfo(BuildContext context, {gameType, subject, grade, level}) {
       Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: const Color(0xFF6A9BD5),
+          color: AppTheme.subjectChipBackground,
         ),
         child: Center(
           child: Text(
             subject,
-            style: const TextStyle(
-              fontSize: 10,
-              color: Colors.black,
+            style: TextStyle(
+              fontSize: AppTheme.SMALL_TEXT_SIZE,
+              color: AppTheme.seconderyTextColor,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -49,14 +50,14 @@ Widget getCardInfo(BuildContext context, {gameType, subject, grade, level}) {
       Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: const Color(0xFF6A9BD5),
+          color: AppTheme.subjectChipBackground,
         ),
         child: Center(
           child: Text(
             grade,
-            style: const TextStyle(
-              fontSize: 10,
-              color: Colors.black,
+            style: TextStyle(
+              fontSize: AppTheme.SMALL_TEXT_SIZE,
+              color: AppTheme.seconderyTextColor,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -65,14 +66,14 @@ Widget getCardInfo(BuildContext context, {gameType, subject, grade, level}) {
       Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: const Color(0xFF6A9BD5),
+          color: AppTheme.subjectChipBackground,
         ),
         child: Center(
           child: Text(
             level,
-            style: const TextStyle(
-              fontSize: 10,
-              color: Colors.black,
+            style: TextStyle(
+              fontSize: AppTheme.SMALL_TEXT_SIZE,
+              color: AppTheme.seconderyTextColor,
               fontWeight: FontWeight.bold,
             ),
           ),

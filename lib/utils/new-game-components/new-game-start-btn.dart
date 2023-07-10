@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 
 class NewGameStartButton extends StatelessWidget {
   const NewGameStartButton({super.key});
@@ -9,7 +10,7 @@ class NewGameStartButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: const Color(0xFFE1EA7A),
+        color: AppTheme.buttonIconColor,
       ),
       height: 48,
       width: MediaQuery.of(context).size.width * 0.75,
@@ -17,8 +18,7 @@ class NewGameStartButton extends StatelessWidget {
         child: Text(
           'Start Game',
           style: TextStyle(
-            color: Color.fromARGB(255, 0, 0, 0),
-            fontSize: 16,
+            fontSize: AppTheme.LARGE_TEXT_SIZE,
           ),
         ),
       ),

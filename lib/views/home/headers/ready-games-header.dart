@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 
 class ReadyGamesHeader extends StatelessWidget {
   const ReadyGamesHeader({super.key});
@@ -14,23 +15,26 @@ class ReadyGamesHeader extends StatelessWidget {
           children: [
             Image.asset('assets/images/icons/dice.png', height: 32),
             const SizedBox(width: 12),
-            const Text(
+            Text(
               'Ready Games',
               style: TextStyle(
-                fontSize: 16,
+                fontSize: AppTheme.LARGE_TEXT_SIZE,
+                color: AppTheme.seconderyTextColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ],
         ),
         GestureDetector(
-          onTap: () {},
-          child: const Text(
+          onTap: () {
+            Navigator.pushNamed(context, '/GamesScreen');
+          },
+          child: Text(
             'See All',
             style: TextStyle(
-              fontSize: 14,
+              fontSize: AppTheme.DEFAULT_TEXT_SIZE,
               fontWeight: FontWeight.bold,
-              color: Color.fromRGBO(10, 51, 164, 0.612),
+              color: AppTheme.seconderyTextColor,
               decoration: TextDecoration.underline,
             ),
           ),

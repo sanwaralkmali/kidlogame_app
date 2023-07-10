@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 
 class CoursesListView extends StatelessWidget {
   const CoursesListView({Key? key, required this.courses}) : super(key: key);
@@ -21,11 +22,11 @@ class CoursesListView extends StatelessWidget {
                 minWidth: 160,
               ),
               child: Card(
+                color: AppTheme.subjectChipBackground,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
                 elevation: 5,
-                color: const Color.fromRGBO(100, 150, 197, 10),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Row(
@@ -33,13 +34,15 @@ class CoursesListView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Image.asset(
-                          'assets/images/subjects/${courses[index]}.png',
-                          height: 35),
+                        'assets/images/subjects/${courses[index]}.png',
+                        height: 36,
+                      ),
                       const SizedBox(width: 4),
                       Text(
                         courses[index],
-                        style: const TextStyle(
-                          fontSize: 16,
+                        style: TextStyle(
+                          fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+                          color: AppTheme.seconderyTextColor,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
