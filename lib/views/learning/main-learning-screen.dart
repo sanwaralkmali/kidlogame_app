@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import 'package:kidlogame_app/utils/app&bottomBars/main-appBar.dart';
 
 class LearningScreen extends StatelessWidget {
@@ -9,13 +10,20 @@ class LearningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFAECCDE),
+      backgroundColor: AppTheme.scaffoldBackgroundColor,
       appBar: MyAppBar(
         context: context,
       ),
-      body: const SafeArea(
+      body: SafeArea(
         child: Center(
-          child: Text('Not implemented yet'),
+          child: Text(
+            'Not implemented yet',
+            style: TextStyle(
+              fontSize: AppTheme.LARGE_TEXT_SIZE,
+              color: AppTheme.seconderyTextColor,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
         ),
       ),
     );

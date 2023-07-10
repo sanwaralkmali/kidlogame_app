@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import 'package:kidlogame_app/utils/showDialogs/add-new-friend-dialog.dart';
 import 'package:kidlogame_app/views/leaderboard/leaderboardTabsScreens/leaderboard-friends-listview-builder.dart';
 
@@ -66,8 +67,8 @@ class _LeaderBoardFriendsState extends State<LeaderBoardFriends> {
                       width: MediaQuery.of(context).size.width * 0.6,
                       height: 60,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF0F0F0),
                         borderRadius: BorderRadius.circular(36),
+                        color: AppTheme.searchBarContainer,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
@@ -98,13 +99,15 @@ class _LeaderBoardFriendsState extends State<LeaderBoardFriends> {
                           Expanded(
                             child: TextField(
                               controller: _controller,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: 'Search ...',
+                                hintStyle: TextStyle(
+                                  fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+                                  color: AppTheme.seconderyTextColor,
+                                ),
                               ),
                               onChanged: (value) {
-                                print(
-                                    ' _____________________________ $filteredFriends ________________________________');
                                 setState(() {
                                   filteredFriends = friends
                                       .where((friend) => friend
@@ -126,8 +129,8 @@ class _LeaderBoardFriendsState extends State<LeaderBoardFriends> {
                         width: MediaQuery.of(context).size.width * 0.3,
                         height: 60,
                         decoration: BoxDecoration(
-                          color: const Color.fromARGB(170, 225, 234, 122),
                           borderRadius: BorderRadius.circular(8),
+                          color: AppTheme.buttonColor,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.grey.withOpacity(0.5),
@@ -147,10 +150,11 @@ class _LeaderBoardFriendsState extends State<LeaderBoardFriends> {
                               height: 36,
                             ),
                             const SizedBox(height: 2),
-                            const Text(
+                            Text(
                               'Add New Friend',
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+                                color: AppTheme.seconderyTextColor,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

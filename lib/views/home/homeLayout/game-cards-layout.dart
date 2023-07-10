@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import 'package:kidlogame_app/utils/homeComponents/game-card.dart';
 
 class GamesLayout extends StatelessWidget {
@@ -9,25 +10,25 @@ class GamesLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 275,
+      height: 250,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: List.generate(
           10,
           (index) {
-            return const SizedBox(
-              width: 250,
+            return SizedBox(
+              width: 220,
               child: Card(
+                color: AppTheme.cardColor,
                 elevation: 5,
-                color: Color(0xFFEEEEEE),
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(20),
                   ),
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsets.only(top: 16, left: 8, right: 8, bottom: 8),
+                      EdgeInsets.only(top: 12, left: 8, right: 8, bottom: 8),
                   child: GameCard(),
                 ),
               ),

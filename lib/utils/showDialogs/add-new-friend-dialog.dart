@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 
 void showAddFriendDialog(BuildContext context) {
   bool isUserFound = false;
@@ -8,12 +9,12 @@ void showAddFriendDialog(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return Dialog(
-        backgroundColor: const Color.fromARGB(255, 240, 235, 227),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),
         shadowColor: Colors.grey.withOpacity(0.5),
         child: Container(
+          color: AppTheme.cardColor,
           padding: const EdgeInsets.all(16),
           constraints: const BoxConstraints(
             maxHeight: 450,
@@ -35,24 +36,26 @@ void showAddFriendDialog(BuildContext context) {
                 ),
               ),
               const SizedBox(height: 8),
-              const Center(
+              Center(
                 child: Text(
                   'Add New Friend',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: AppTheme.EXTRA_LARGE_TEXT_SIZE,
                     fontWeight: FontWeight.w500,
+                    color: AppTheme.seconderyTextColor,
                     letterSpacing: 1.5,
                   ),
                 ),
               ),
               const SizedBox(height: 42),
-              const Align(
+              Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'USER ID:',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: AppTheme.DEFAULT_TEXT_SIZE,
                     fontWeight: FontWeight.w400,
+                    color: AppTheme.seconderyTextColor,
                     letterSpacing: 1.2,
                   ),
                 ),
@@ -62,13 +65,19 @@ void showAddFriendDialog(BuildContext context) {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12.0, vertical: 2),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: AppTheme.searchBarContainer,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const TextField(
+                child: TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'search by ID',
+                    hintStyle: TextStyle(
+                      fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+                      fontWeight: FontWeight.w400,
+                      color: AppTheme.seconderyTextColor,
+                      letterSpacing: 1.2,
+                    ),
                   ),
                 ),
               ),
@@ -78,7 +87,7 @@ void showAddFriendDialog(BuildContext context) {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppTheme.playerCard,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Row(

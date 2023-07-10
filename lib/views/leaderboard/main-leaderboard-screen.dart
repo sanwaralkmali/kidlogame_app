@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import 'package:kidlogame_app/views/leaderboard/leaderboard-header.dart';
 import 'package:kidlogame_app/views/leaderboard/leaderboardTabsScreens/leaderboard-friends.dart';
 import 'package:kidlogame_app/views/leaderboard/leaderboardTabsScreens/leaderboard-players.dart';
@@ -16,9 +17,13 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
   List<Widget> selectedWidget = [
     const LeaderBoardPlayers(),
     const LeaderBoardFriends(),
-    const Text(
+    Text(
       'Not available yet',
-      style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 29, 27, 27)),
+      style: TextStyle(
+        fontSize: AppTheme.LARGE_TEXT_SIZE,
+        color: AppTheme.seconderyTextColor,
+        fontWeight: FontWeight.w400,
+      ),
     ),
   ];
 
@@ -31,7 +36,7 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
     Widget selectItem = selectedWidget[selectedIndex];
 
     return Scaffold(
-      backgroundColor: const Color(0xFFAECCDE),
+      backgroundColor: AppTheme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -53,8 +58,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                     height: 75,
                     decoration: BoxDecoration(
                       color: (isSelected(0))
-                          ? const Color.fromARGB(255, 196, 228, 182)
-                          : const Color.fromARGB(255, 255, 249, 249),
+                          ? AppTheme.selectedTap
+                          : AppTheme.tapColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(
@@ -66,10 +71,11 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                           height: 32,
                         ),
                         const SizedBox(height: 4),
-                        const Text(
+                        Text(
                           'Players',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: AppTheme.LARGE_TEXT_SIZE,
+                            color: AppTheme.seconderyTextColor,
                           ),
                         ),
                       ],
@@ -87,8 +93,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                     height: 75,
                     decoration: BoxDecoration(
                       color: (isSelected(1))
-                          ? const Color.fromARGB(255, 196, 228, 182)
-                          : const Color.fromARGB(255, 255, 249, 249),
+                          ? AppTheme.selectedTap
+                          : AppTheme.tapColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(
@@ -100,11 +106,11 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                           width: 32,
                         ),
                         const SizedBox(height: 4),
-                        const Text(
+                        Text(
                           'Friends',
                           style: TextStyle(
-                            fontSize: 16,
-                          ),
+                              fontSize: AppTheme.LARGE_TEXT_SIZE,
+                              color: AppTheme.seconderyTextColor),
                         ),
                       ],
                     ),
@@ -121,8 +127,8 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                     height: 75,
                     decoration: BoxDecoration(
                       color: (isSelected(2))
-                          ? const Color.fromARGB(255, 196, 228, 182)
-                          : const Color.fromARGB(255, 255, 249, 249),
+                          ? AppTheme.selectedTap
+                          : AppTheme.tapColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(
@@ -134,10 +140,11 @@ class _LeaderBoardScreenState extends State<LeaderBoardScreen> {
                           width: 32,
                         ),
                         const SizedBox(height: 4),
-                        const Text(
+                        Text(
                           'Subjects',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: AppTheme.LARGE_TEXT_SIZE,
+                            color: AppTheme.seconderyTextColor,
                           ),
                         ),
                       ],

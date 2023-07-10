@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import 'package:kidlogame_app/utils/new-game-components/game-type.dart';
 import 'package:kidlogame_app/utils/new-game-components/new-game-difficulty.dart';
 import 'package:kidlogame_app/utils/new-game-components/new-game-grade-menu.dart';
@@ -23,31 +24,32 @@ class _NewGameCardState extends State<NewGameCard> {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
-        color: const Color(0xFFEEEEEE),
+        color: AppTheme.appBar,
       ),
-      child: const SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
           children: [
             Text(
               'Create New Game',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: AppTheme.EXTRA_LARGE_TEXT_SIZE,
                 fontWeight: FontWeight.w400,
+                color: AppTheme.primaryTextColor,
                 letterSpacing: 1.2,
               ),
             ),
-            SizedBox(height: 24),
-            GameType(),
-            SizedBox(height: 16),
-            GradeMenu(),
-            SizedBox(height: 16),
-            NewGameSubjectsMenu(),
-            SizedBox(height: 16),
-            NewGameTopicsMenu(),
-            SizedBox(height: 16),
-            NewGameDifficulty(),
-            SizedBox(height: 24),
-            NewGameStartButton(),
+            const SizedBox(height: 24),
+            const GameType(),
+            const SizedBox(height: 16),
+            const GradeMenu(),
+            const SizedBox(height: 16),
+            const NewGameSubjectsMenu(),
+            const SizedBox(height: 16),
+            const NewGameTopicsMenu(),
+            const SizedBox(height: 16),
+            const NewGameDifficulty(),
+            const SizedBox(height: 24),
+            const NewGameStartButton(),
           ],
         ),
       ),

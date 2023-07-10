@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 
 class MySearchBar extends StatelessWidget {
   const MySearchBar({super.key});
@@ -11,7 +12,7 @@ class MySearchBar extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.95,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
-        color: const Color(0xFFF6F3F3),
+        color: AppTheme.searchBarContainer,
       ),
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
       child: Row(
@@ -24,10 +25,14 @@ class MySearchBar extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          const Expanded(
+          Expanded(
             child: TextField(
               decoration: InputDecoration(
                 hintText: "Search . . .",
+                hintStyle: TextStyle(
+                  color: AppTheme.seconderyTextColor,
+                  fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+                ),
                 border: InputBorder.none,
               ),
             ),
@@ -35,7 +40,7 @@ class MySearchBar extends StatelessWidget {
           Container(
             width: 1.5,
             height: 32,
-            color: Colors.black,
+            color: AppTheme.seconderyTextColor,
           ),
           const SizedBox(width: 8),
           IconButton(

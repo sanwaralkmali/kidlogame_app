@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import 'package:kidlogame_app/views/game/games-screen.dart';
 import 'package:kidlogame_app/views/home/homeLayout/home-main-content.dart';
 import 'package:kidlogame_app/views/leaderboard/main-leaderboard-screen.dart';
@@ -41,34 +42,45 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     } else {
       return Scaffold(
-        body: IndexedStack(
-          index: _currentIndex,
-          children: _children,
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: _onTabTapped,
-          currentIndex: _currentIndex,
-          items: [
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/images/icons/home2.png', height: 35),
-              label: 'Home',
+          body: IndexedStack(
+            index: _currentIndex,
+            children: _children,
+          ),
+          bottomNavigationBar: Theme(
+            data: Theme.of(context).copyWith(
+                canvasColor: AppTheme
+                    .appBar, // sets the background color of the `BottomNavigationBar`
+                primaryColor: AppTheme.appBar, // sets the active color
+                textTheme: Theme.of(context).textTheme.copyWith(
+                      caption: TextStyle(color: AppTheme.seconderyTextColor),
+                    ) // sets the inactive color of the `BottomNavigationBar`
+                ),
+            child: BottomNavigationBar(
+              onTap: _onTabTapped,
+              currentIndex: _currentIndex,
+              items: [
+                BottomNavigationBarItem(
+                  icon:
+                      Image.asset('assets/images/icons/home2.png', height: 35),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Image.asset('assets/images/icons/abc.png', height: 35),
+                  label: 'Games',
+                ),
+                BottomNavigationBarItem(
+                  icon: Image.asset('assets/images/icons/podium3.png',
+                      height: 35),
+                  label: 'Leaderboard',
+                ),
+                BottomNavigationBarItem(
+                  icon: Image.asset('assets/images/icons/online-learning.png',
+                      height: 35),
+                  label: 'Learning',
+                ),
+              ],
             ),
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/images/icons/abc.png', height: 35),
-              label: 'Games',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/images/icons/podium3.png', height: 35),
-              label: 'Leaderboard',
-            ),
-            BottomNavigationBarItem(
-              icon: Image.asset('assets/images/icons/online-learning.png',
-                  height: 35),
-              label: 'Learning',
-            ),
-          ],
-        ),
-      );
+          ));
     }
   }
 }

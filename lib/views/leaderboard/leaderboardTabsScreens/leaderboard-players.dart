@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import 'package:kidlogame_app/models/user.dart';
 import 'package:kidlogame_app/services/user-provider.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +30,8 @@ class _LeaderBoardPlayersState extends State<LeaderBoardPlayers> {
           return Container(
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 255, 249, 249),
               borderRadius: BorderRadius.circular(8),
+              color: AppTheme.playerCard,
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.5),
@@ -55,17 +56,24 @@ class _LeaderBoardPlayersState extends State<LeaderBoardPlayers> {
                         width: 52,
                       ),
                       const SizedBox(height: 2),
-                      Text('Level ${user!.level}'),
+                      Text(
+                        'Level ${user!.level}',
+                        style: TextStyle(
+                          color: AppTheme.seconderyTextColor,
+                          fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+                        ),
+                      ),
                     ],
                   ),
                 ),
+                const SizedBox(width: 4),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.45,
+                  width: MediaQuery.of(context).size.width * 0.4,
                   child: Text(
                     'Player ${index + 1}',
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 12,
+                    style: TextStyle(
+                      color: AppTheme.seconderyTextColor,
+                      fontSize: AppTheme.DEFAULT_TEXT_SIZE,
                     ),
                   ),
                 ),
@@ -81,9 +89,9 @@ class _LeaderBoardPlayersState extends State<LeaderBoardPlayers> {
                       const SizedBox(height: 2),
                       Text(
                         '${(1000 * 3 + 75 / (index + 1)).round()}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
+                        style: TextStyle(
+                          color: AppTheme.seconderyTextColor,
+                          fontSize: AppTheme.DEFAULT_TEXT_SIZE,
                         ),
                       ),
                     ],
@@ -112,7 +120,7 @@ class _LeaderBoardPlayersState extends State<LeaderBoardPlayers> {
                       },
                       icon: Image.asset(
                         'assets/images/icons/addFriend.png',
-                        width: 32,
+                        width: 36,
                       ),
                     ),
                   ),

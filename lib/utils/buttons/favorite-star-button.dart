@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable, library_private_types_in_public_api, file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 
 class FavoriteButton extends StatefulWidget {
   FavoriteButton({Key? key, required this.isFavorite}) : super(key: key);
@@ -25,7 +26,7 @@ class _FavoriteButtonState extends State<FavoriteButton>
 
     _colorAnimation = ColorTween(
       begin: Colors.grey,
-      end: Colors.yellow,
+      end: AppTheme.faviorteIcon,
     ).animate(_controller);
   }
 

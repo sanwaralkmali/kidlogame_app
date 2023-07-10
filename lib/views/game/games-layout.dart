@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import 'package:kidlogame_app/utils/forms/search-filter-games.dart';
 import 'package:kidlogame_app/utils/homeComponents/game-card.dart';
 
@@ -35,17 +36,17 @@ class _GamesLayoutState extends State<AllGamesLayout> {
             ),
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return const Card(
+                return Card(
+                  color: AppTheme.cardColor,
                   elevation: 16,
-                  color: Color(0xFFEEEEEE),
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
                     ),
                   ),
-                  child: Padding(
+                  child: const Padding(
                     padding:
-                        EdgeInsets.only(top: 16, left: 8, right: 8, bottom: 8),
+                        EdgeInsets.only(top: 12, left: 8, right: 8, bottom: 12),
                     child: GameCard(),
                   ),
                 );

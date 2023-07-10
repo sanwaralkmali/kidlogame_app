@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import 'package:kidlogame_app/models/user.dart';
 import 'package:kidlogame_app/services/user-provider.dart';
 import 'package:kidlogame_app/utils/showDialogs/delete-friend-dialog.dart';
@@ -28,8 +29,8 @@ class _LeaderBoardFriendsListViewItemState
       child: Container(
         padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 249, 249),
           borderRadius: BorderRadius.circular(8),
+          color: AppTheme.playerCard,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.5),
@@ -54,7 +55,12 @@ class _LeaderBoardFriendsListViewItemState
                     width: 52,
                   ),
                   const SizedBox(height: 2),
-                  Text('Level ${user!.level}'),
+                  Text(
+                    'Level ${user!.level}',
+                    style: TextStyle(
+                        fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+                        color: AppTheme.seconderyTextColor),
+                  ),
                 ],
               ),
             ),
@@ -62,9 +68,9 @@ class _LeaderBoardFriendsListViewItemState
               width: MediaQuery.of(context).size.width * 0.45,
               child: Text(
                 widget.user,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 12,
+                style: TextStyle(
+                  fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+                  color: AppTheme.seconderyTextColor,
                 ),
               ),
             ),
@@ -80,9 +86,9 @@ class _LeaderBoardFriendsListViewItemState
                   const SizedBox(height: 2),
                   Text(
                     '${((100 / (widget.index + 1) * 5)).round()}',
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 12,
+                    style: TextStyle(
+                      fontSize: AppTheme.DEFAULT_TEXT_SIZE,
+                      color: AppTheme.seconderyTextColor,
                     ),
                   ),
                 ],

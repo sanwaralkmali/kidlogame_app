@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 
 class NewGameButton extends StatefulWidget {
   const NewGameButton({super.key});
@@ -20,15 +21,15 @@ class _NewGameButtonState extends State<NewGameButton> {
         height: 62,
         width: 175,
         decoration: BoxDecoration(
-          color: const Color(0xFFE1EA7A),
+          color: AppTheme.buttonColor,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
             'New Game',
             style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
+              color: AppTheme.seconderyTextColor,
+              fontSize: AppTheme.LARGE_TEXT_SIZE,
               fontWeight: FontWeight.w400,
             ),
           ),

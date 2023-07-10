@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 import 'package:kidlogame_app/utils/buttons/favorite-star-button.dart';
 import 'package:kidlogame_app/utils/buttons/like-heart-button.dart';
 import 'package:kidlogame_app/utils/buttons/start-game.dart';
@@ -21,22 +22,24 @@ class _GameCardState extends State<GameCard> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Text(
+          Text(
             'Game Name',
             style: TextStyle(
-              fontSize: 18,
+              fontSize: AppTheme.EXTRA_LARGE_TEXT_SIZE,
+              color: AppTheme.primaryTextColor,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 8),
           getCardInfo(
+            context,
             gameType: 'Game Type',
             subject: 'Subject',
             grade: 'Grade',
             level: 'Level',
           ),
-          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -44,7 +47,6 @@ class _GameCardState extends State<GameCard> {
               FavoriteButton(isFavorite: false),
             ],
           ),
-          const SizedBox(height: 16),
           const StartGameButton(),
         ],
       ),

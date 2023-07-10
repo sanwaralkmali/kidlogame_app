@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:kidlogame_app/constants/themes.dart';
 
 class ExploreHeader extends StatelessWidget {
   const ExploreHeader({super.key});
@@ -9,12 +10,16 @@ class ExploreHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        Image.asset('assets/images/icons/transparency.png', height: 36),
+        Image.asset(
+          'assets/images/icons/transparency.png',
+          height: 36,
+        ),
         const SizedBox(width: 12),
-        const Text(
+        Text(
           'Explore Subjects',
           style: TextStyle(
-            fontSize: 16,
+            fontSize: AppTheme.LARGE_TEXT_SIZE,
+            color: AppTheme.seconderyTextColor,
             fontWeight: FontWeight.bold,
           ),
         ),
