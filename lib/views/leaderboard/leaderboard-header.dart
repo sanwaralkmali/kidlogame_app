@@ -7,31 +7,34 @@ class LeaderBoardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        IconButton(
-          icon: Image.asset(
-            'assets/images/icons/back.png',
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            icon: Image.asset(
+              'assets/images/icons/back.png',
+              width: 36,
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()));
+            },
+          ),
+          const Text(
+            'Leaderboard',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            height: 36,
             width: 36,
           ),
-          onPressed: () {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()));
-          },
-        ),
-        const Text(
-          'Leaderboard',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(
-          height: 36,
-          width: 36,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
