@@ -45,7 +45,7 @@ class _GamesLayoutState extends State<AllGamesLayout> {
                   ),
                   child: Padding(
                     padding:
-                        EdgeInsets.only(top: 16, left: 8, right: 8, bottom: 8),
+                        EdgeInsets.only(top: 12, left: 8, right: 8, bottom: 12),
                     child: GameCard(),
                   ),
                 );

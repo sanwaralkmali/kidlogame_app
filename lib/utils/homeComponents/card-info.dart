@@ -2,27 +2,28 @@
 
 import 'package:flutter/material.dart';
 
-Widget getCardInfo({gameType, subject, grade, level}) {
+Widget getCardInfo(BuildContext context, {gameType, subject, grade, level}) {
   return GridView(
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
-      childAspectRatio: 3,
-      mainAxisSpacing: 12,
-      crossAxisSpacing: 12,
+      childAspectRatio: 2.8,
+      mainAxisSpacing: 24,
+      crossAxisSpacing: 16,
     ),
     children: [
       Container(
+        width: 120,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8),
           color: const Color(0xFF6A9BD5),
         ),
         child: Center(
           child: Text(
             gameType,
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: 10,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
@@ -31,14 +32,14 @@ Widget getCardInfo({gameType, subject, grade, level}) {
       ),
       Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8),
           color: const Color(0xFF6A9BD5),
         ),
         child: Center(
           child: Text(
             subject,
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: 10,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
@@ -47,14 +48,14 @@ Widget getCardInfo({gameType, subject, grade, level}) {
       ),
       Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8),
           color: const Color(0xFF6A9BD5),
         ),
         child: Center(
           child: Text(
             grade,
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: 10,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),
@@ -63,14 +64,14 @@ Widget getCardInfo({gameType, subject, grade, level}) {
       ),
       Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8),
           color: const Color(0xFF6A9BD5),
         ),
         child: Center(
           child: Text(
             level,
             style: const TextStyle(
-              fontSize: 12,
+              fontSize: 10,
               color: Colors.black,
               fontWeight: FontWeight.bold,
             ),

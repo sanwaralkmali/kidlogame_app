@@ -9,14 +9,14 @@ class GamesLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 275,
+      height: 250,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: List.generate(
           10,
           (index) {
             return const SizedBox(
-              width: 250,
+              width: 220,
               child: Card(
                 elevation: 5,
                 color: Color(0xFFEEEEEE),
@@ -27,7 +27,7 @@ class GamesLayout extends StatelessWidget {
                 ),
                 child: Padding(
                   padding:
-                      EdgeInsets.only(top: 16, left: 8, right: 8, bottom: 8),
+                      EdgeInsets.only(top: 12, left: 8, right: 8, bottom: 8),
                   child: GameCard(),
                 ),
               ),

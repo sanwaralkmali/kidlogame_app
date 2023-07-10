@@ -21,6 +21,7 @@ class _GameCardState extends State<GameCard> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           const Text(
             'Game Name',
@@ -29,14 +30,14 @@ class _GameCardState extends State<GameCard> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 8),
           getCardInfo(
+            context,
             gameType: 'Game Type',
             subject: 'Subject',
             grade: 'Grade',
             level: 'Level',
           ),
-          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -44,7 +45,6 @@ class _GameCardState extends State<GameCard> {
               FavoriteButton(isFavorite: false),
             ],
           ),
-          const SizedBox(height: 16),
           const StartGameButton(),
         ],
       ),
