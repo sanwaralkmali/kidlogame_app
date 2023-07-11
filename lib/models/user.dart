@@ -6,6 +6,7 @@ class KUser {
   final String username;
   final String password;
   final String email;
+  final String fcmToken;
   DateTime? dateOfBirth;
   String? grade;
   String gender;
@@ -20,6 +21,7 @@ class KUser {
     required this.lastName,
     required this.username,
     required this.password,
+    required this.fcmToken,
     required this.email,
     this.dateOfBirth,
     this.grade,
@@ -37,6 +39,7 @@ class KUser {
       'firstName': firstName,
       'lastName': lastName,
       'username': username,
+      'fcmToken': fcmToken,
       'password': password,
       'email': email,
       'dateOfBirth': dateOfBirth,
@@ -57,6 +60,7 @@ class KUser {
       lastName: map['lastName'],
       username: map['username'],
       password: map['password'],
+      fcmToken: map['fcmToken'] ?? 'No Token',
       email: map['email'],
       dateOfBirth: map['dateOfBirth'] != null
           ? (map['dateOfBirth'] as Timestamp).toDate()

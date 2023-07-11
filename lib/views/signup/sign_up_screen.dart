@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use, prefer_final_fields
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/models/user.dart';
 import 'dart:math';
@@ -26,6 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   late final FocusNode _focusNode2;
 
   String username = '';
+  String userToken = '';
   bool passwordMessage = false;
   final _formKey = GlobalKey<FormState>();
   Future<void> generateUniqueUsername(String firstName) async {
@@ -57,6 +59,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   void initState() {
     super.initState();
+
+    setState(() {
+      setUserToken().then((value) {
+        userToken = value!;
+      });
+    });
+
+    print(userToken);
     _focusNode = FocusNode();
     _focusNode.addListener(() {});
 
@@ -76,6 +86,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     setState(() {
       generateUniqueUsername(_currentNameController.text);
     });
+  }
+
+  Future<String?> setUserToken() async {
+    return await FirebaseMessaging.instance.getToken();
   }
 
   @override
@@ -518,6 +532,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             firstName: _currentNameController.text,
                             lastName: _lastNameController.text,
                             username: username,
+                            fcmToken: userToken,
                             email: _currentEmailController.text,
                             password: _currentPasswordController.text,
                             gender: 'boy',
