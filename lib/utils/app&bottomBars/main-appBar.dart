@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, file_names
 
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/constants/themes.dart';
+import 'package:kidlogame_app/appTheme/themes.dart';
 import 'package:kidlogame_app/utils/app&bottomBars/appbar-profile.dart';
 import 'package:provider/provider.dart';
 

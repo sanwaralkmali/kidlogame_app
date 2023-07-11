@@ -1,10 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api, file_names
 
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/constants/themes.dart';
+import 'package:kidlogame_app/appTheme/themes.dart';
 import 'package:kidlogame_app/utils/app&bottomBars/new-game-appBar.dart';
 
-import 'package:kidlogame_app/views/game/new-game-card.dart';
+import 'package:kidlogame_app/views/game/new-game-components/new-game-card.dart';
 
 class NewGameScreen extends StatefulWidget {
   const NewGameScreen({super.key});

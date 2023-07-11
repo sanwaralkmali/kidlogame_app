@@ -1,12 +1,12 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/constants/themes.dart';
-import 'package:kidlogame_app/utils/new-game-components/game-type.dart';
-import 'package:kidlogame_app/utils/new-game-components/new-game-difficulty.dart';
-import 'package:kidlogame_app/utils/new-game-components/new-game-grade-menu.dart';
-import 'package:kidlogame_app/utils/new-game-components/new-game-start-btn.dart';
-import 'package:kidlogame_app/utils/new-game-components/new-game-subjects.dart';
-import 'package:kidlogame_app/utils/new-game-components/new-game-topics.dart';
+import 'package:kidlogame_app/appTheme/themes.dart';
+import 'package:kidlogame_app/views/game/new-game-components/game-type.dart';
+import 'package:kidlogame_app/views/game/new-game-components/new-game-difficulty.dart';
+import 'package:kidlogame_app/views/game/new-game-components/new-game-grade-menu.dart';
+import 'package:kidlogame_app/views/game/new-game-components/new-game-start-btn.dart';
+import 'package:kidlogame_app/views/game/new-game-components/new-game-subjects.dart';
+import 'package:kidlogame_app/views/game/new-game-components/new-game-topics.dart';
 
 class NewGameCard extends StatefulWidget {
   const NewGameCard({super.key});

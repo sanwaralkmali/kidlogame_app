@@ -1,78 +1,126 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/constants/themes.dart';
+import 'package:kidlogame_app/appTheme/themes.dart';
 
-class GameType extends StatefulWidget {
-  const GameType({super.key});
+class NewGameSubjectsMenu extends StatefulWidget {
+  const NewGameSubjectsMenu({super.key});
 
   @override
-  State<GameType> createState() => _GameTypeState();
+  State<NewGameSubjectsMenu> createState() => _NewGameSubjectsMenuState();
 }
 
-class _GameTypeState extends State<GameType> {
+class _NewGameSubjectsMenuState extends State<NewGameSubjectsMenu> {
   TextStyle textStyle = TextStyle(
     color: AppTheme.primaryTextColor,
     fontSize: AppTheme.LARGE_TEXT_SIZE,
   );
 
-  String selectedOption = 'Select an option';
+  String selectedOption = 'Choose a subject';
 
   @override
   Widget build(BuildContext context) {
     List<DropdownMenuItem> items = [
       DropdownMenuItem(
-        value: 'Select an option',
+        value: 'Choose a subject',
         enabled: false,
         child: Text(
-          'Select an option',
+          'Choose a subject',
           style: textStyle,
         ),
       ),
       DropdownMenuItem(
-        value: 'Flip and Find',
+        value: 'Mathmatics',
         child: Text(
-          'Flip and Find',
+          'Mathmatics',
           style: textStyle,
         ),
       ),
       DropdownMenuItem(
-        value: 'Quizzy Whizz',
+        value: 'Science',
         child: Text(
-          'Quizzy Whizz',
+          'Science',
           style: textStyle,
         ),
       ),
       DropdownMenuItem(
-        value: 'Chatting Cards',
+        value: 'English',
         child: Text(
-          'Chatting Cards',
+          'English',
           style: textStyle,
         ),
       ),
       DropdownMenuItem(
-        value: 'Battle of Brains',
+        value: 'Arabic',
         child: Text(
-          'Battle of Brains',
+          'Arabic',
           style: textStyle,
         ),
       ),
       DropdownMenuItem(
-        value: 'Minute Mastermind',
+        value: 'French',
         child: Text(
-          'Minute Mastermind',
+          'French',
           style: textStyle,
         ),
       ),
       DropdownMenuItem(
-        value: 'Push & Play',
+        value: 'History',
         child: Text(
-          'Push & Play',
+          'History',
           style: textStyle,
         ),
       ),
-      //add more options here
+      DropdownMenuItem(
+        value: 'Geography',
+        child: Text(
+          'Geography',
+          style: textStyle,
+        ),
+      ),
+      DropdownMenuItem(
+        value: 'Computer',
+        child: Text(
+          'Computer',
+          style: textStyle,
+        ),
+      ),
+      DropdownMenuItem(
+        value: 'Art',
+        child: Text(
+          'Art',
+          style: textStyle,
+        ),
+      ),
+      DropdownMenuItem(
+        value: 'Music',
+        child: Text(
+          'Music',
+          style: textStyle,
+        ),
+      ),
+      DropdownMenuItem(
+        value: 'Sports',
+        child: Text(
+          'Sports',
+          style: textStyle,
+        ),
+      ),
+      DropdownMenuItem(
+        value: 'Religion',
+        child: Text(
+          'Religion',
+          style: textStyle,
+        ),
+      ),
+      DropdownMenuItem(
+        value: 'Other',
+        child: Text(
+          'Other',
+          style: textStyle,
+        ),
+      ),
     ];
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(

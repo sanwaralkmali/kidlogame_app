@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/constants/themes.dart';
+import 'package:kidlogame_app/appTheme/themes.dart';
 
 Widget getCardInfo(BuildContext context, {gameType, subject, grade, level}) {
   return GridView(

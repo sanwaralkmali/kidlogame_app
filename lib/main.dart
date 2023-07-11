@@ -2,12 +2,12 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/constants/themes.dart';
+import 'package:kidlogame_app/appTheme/themes.dart';
 import 'package:kidlogame_app/models/user.dart';
 import 'package:kidlogame_app/services/navigation-bar-provider.dart';
 import 'package:kidlogame_app/services/user-provider.dart';
 import 'package:kidlogame_app/views/game/games-screen.dart';
-import 'package:kidlogame_app/views/game/new-game-screen.dart';
+import 'package:kidlogame_app/views/game/new-game-components/new-game-screen.dart';
 import 'package:kidlogame_app/views/leaderboard/main-leaderboard-screen.dart';
 
 import 'package:kidlogame_app/views/login/login-screen.dart';

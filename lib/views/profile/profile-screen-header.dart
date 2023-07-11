@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/constants/themes.dart';
+import 'package:kidlogame_app/appTheme/themes.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({super.key});

@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/constants/themes.dart';
+import 'package:kidlogame_app/appTheme/themes.dart';
 import 'package:kidlogame_app/views/leaderboard/leaderboard-header.dart';
 import 'package:kidlogame_app/views/leaderboard/leaderboardTabsScreens/leaderboard-friends.dart';
 import 'package:kidlogame_app/views/leaderboard/leaderboardTabsScreens/leaderboard-players.dart';

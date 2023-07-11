@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/constants/themes.dart';
+import 'package:kidlogame_app/appTheme/themes.dart';
 import 'package:kidlogame_app/models/user.dart';
 import 'package:kidlogame_app/services/user-provider.dart';
 import 'package:provider/provider.dart';

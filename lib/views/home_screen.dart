@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/constants/themes.dart';
+import 'package:kidlogame_app/appTheme/themes.dart';
 import 'package:kidlogame_app/views/game/games-screen.dart';
 import 'package:kidlogame_app/views/home/homeLayout/home-main-content.dart';
 import 'package:kidlogame_app/views/leaderboard/main-leaderboard-screen.dart';

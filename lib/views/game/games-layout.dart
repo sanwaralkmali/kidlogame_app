@@ -1,8 +1,8 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/constants/themes.dart';
+import 'package:kidlogame_app/appTheme/themes.dart';
 import 'package:kidlogame_app/utils/forms/search-filter-games.dart';
-import 'package:kidlogame_app/utils/homeComponents/game-card.dart';
+import 'package:kidlogame_app/utils/cards/game-card.dart';
 
 class AllGamesLayout extends StatefulWidget {
   const AllGamesLayout({super.key});

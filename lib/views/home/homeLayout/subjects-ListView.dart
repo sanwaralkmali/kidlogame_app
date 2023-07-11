@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/constants/themes.dart';
+import 'package:kidlogame_app/appTheme/themes.dart';
 
 class CoursesListView extends StatelessWidget {
   const CoursesListView({Key? key, required this.courses}) : super(key: key);
