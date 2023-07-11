@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison, use_build_context_synchronously
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/appTheme/themes.dart';
 import 'package:kidlogame_app/models/user.dart';
@@ -67,9 +68,44 @@ class _MyAppState extends State<MyApp> {
     return KUser.fromMap(document.data());
   }
 
+  void messageListener(BuildContext context) {}
+
   @override
   void initState() {
     super.initState();
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('New Message'),
+          content: Text(message.notification!.body!),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Ok'),
+            ),
+          ],
+        ),
+      );
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('New Message'),
+          content: Text(message.notification!.body!),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Ok'),
+            ),
+          ],
+        ),
+      );
+    });
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _getUser().then((user) {
         Provider.of<UserProvider>(context, listen: false).user;
@@ -81,6 +117,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    messageListener(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'KidloGame',

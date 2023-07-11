@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/appTheme/themes.dart';
+import 'package:kidlogame_app/gameFunctions/send-invitation.dart';
+import 'package:kidlogame_app/models/user.dart';
+import 'package:kidlogame_app/services/get-user.dart';
+import 'package:kidlogame_app/services/user-provider.dart';
+import 'package:provider/provider.dart';
 
 class InviteFriendCard extends StatefulWidget {
   final username;
@@ -10,8 +15,24 @@ class InviteFriendCard extends StatefulWidget {
 }
 
 class _InviteFriendCardState extends State<InviteFriendCard> {
+  KUser? friend;
+
+  void setFriend() async {
+    await fetchUser("Salah2_652").then((value) {
+      friend = value!;
+    });
+  }
+
+  @override
+  void initState() {
+    setFriend();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    KUser? user = Provider.of<UserProvider>(context).user;
+
     return Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -49,7 +70,11 @@ class _InviteFriendCardState extends State<InviteFriendCard> {
               color: AppTheme.buttonIconColor,
             ),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                setFriend();
+                print('${user!.username} invited ${friend!.fcmToken}');
+                inviteFriend(user!.username, friend!.fcmToken);
+              },
               child: Center(
                 child: Text(
                   'Invite',
