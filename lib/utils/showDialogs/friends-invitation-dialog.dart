@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/appTheme/themes.dart';
 import 'package:kidlogame_app/utils/cards/invite-friend-card.dart';
@@ -20,12 +22,12 @@ void showFriendsInviteDialog(BuildContext context) {
     builder: (context) {
       return Dialog(
         backgroundColor: AppTheme.subjectChipBackground,
-        child: Container(
+        child: SizedBox(
           height: 400,
           child: Column(
             children: [
               const SizedBox(height: 32),
-              Container(
+              SizedBox(
                 height: 300,
                 child: Scrollbar(
                   child: ListView.separated(

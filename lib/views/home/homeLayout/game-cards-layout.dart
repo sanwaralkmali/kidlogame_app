@@ -26,7 +26,7 @@ class GamesLayout extends StatelessWidget {
                     Radius.circular(20),
                   ),
                 ),
-                child: Padding(
+                child: const Padding(
                   padding:
                       EdgeInsets.only(top: 12, left: 8, right: 8, bottom: 8),
                   child: GameCard(),

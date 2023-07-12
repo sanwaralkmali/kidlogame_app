@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     .appBar, // sets the background color of the `BottomNavigationBar`
                 primaryColor: AppTheme.appBar, // sets the active color
                 textTheme: Theme.of(context).textTheme.copyWith(
-                      caption: TextStyle(color: AppTheme.seconderyTextColor),
+                      bodySmall: TextStyle(color: AppTheme.seconderyTextColor),
                     ) // sets the inactive color of the `BottomNavigationBar`
                 ),
             child: BottomNavigationBar(

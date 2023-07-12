@@ -13,7 +13,7 @@ class LeaderBoardFriends extends StatefulWidget {
 }
 
 class _LeaderBoardFriendsState extends State<LeaderBoardFriends> {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   List<String> friends = [
     'Friend 1',
     'Friend 2',

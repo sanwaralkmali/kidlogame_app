@@ -1,5 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:kidlogame_app/appTheme/themes.dart';
 
 class ProfileBackground extends StatefulWidget {
   const ProfileBackground({super.key});
@@ -11,7 +12,7 @@ class ProfileBackground extends StatefulWidget {
 class _ProfileBackgroundState extends State<ProfileBackground> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 250,
       child: Stack(
         children: [
