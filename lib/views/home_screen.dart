@@ -1,5 +1,7 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:kidlogame_app/appTheme/themes.dart';
+import 'package:kidlogame_app/utils/showDialogs/delete-friend-dialog.dart';
 import 'package:kidlogame_app/views/game/games-screen.dart';
 import 'package:kidlogame_app/views/home/homeLayout/home-main-content.dart';
 import 'package:kidlogame_app/views/leaderboard/main-leaderboard-screen.dart';
@@ -29,6 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
