@@ -66,7 +66,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       });
     });
 
-    print(userToken);
     _focusNode = FocusNode();
     _focusNode.addListener(() {});
 

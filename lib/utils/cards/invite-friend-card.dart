@@ -21,7 +21,7 @@ class _InviteFriendCardState extends State<InviteFriendCard> {
 
   void setFriend() async {
     await fetchUser("Salah2_652").then((value) {
-      friend = value!;
+      friend = value;
     });
   }
 
@@ -74,7 +74,6 @@ class _InviteFriendCardState extends State<InviteFriendCard> {
             child: GestureDetector(
               onTap: () {
                 setFriend();
-                print('${user!.username} invited ${friend!.fcmToken}');
                 inviteFriend(user!.username, friend!.fcmToken);
               },
               child: Center(
